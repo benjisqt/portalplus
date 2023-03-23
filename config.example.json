@@ -1,0 +1,4 @@
+{
+    "token": "BOT TOKEN HERE",
+    "mongo": "MONGODB DATABASE STRING HERE"
+}
