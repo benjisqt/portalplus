@@ -37,7 +37,7 @@ async function loadCommands(client) {
             const cmd = require(`../commands/${folder}/${file}`);
 
             client.commands.set(cmd.data.name, cmd);
-
+            
             commandsArray.push(cmd.data.toJSON());
 
             continue;
