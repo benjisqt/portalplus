@@ -16,7 +16,7 @@ async function loadEvents(client) {
                 else client.rest.on(event.name, (...args) => event.execute(...args, client))
             } else {
                 if(event.once) client.once(event.name, (...args) => event.execute(...args, client))
-                else client.on(event.name, (...args) => event.execute(...args))
+                else client.on(event.name, (...args) => event.execute(...args, client))
             }
             continue;
         }

@@ -1,5 +1,6 @@
 const { Collection, Client, GatewayIntentBits, Partials } = require('discord.js');
 const chalk = require('chalk');
+console.clear();
 
 const { Guilds, GuildMessages, GuildMembers, DirectMessages, GuildModeration, GuildInvites, GuildVoiceStates, GuildPresences } = GatewayIntentBits;
 const { Channel, GuildMember, Message, Reaction, ThreadMember, User, GuildScheduledEvent } = Partials;
