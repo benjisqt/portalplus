@@ -1,6 +1,7 @@
 const { ChatInputCommandInteraction, Client, EmbedBuilder } = require('discord.js');
 const replies = require('../../util/replies');
 const blacklistuser = require('../../models/blacklistuser');
+const blacklistcmd = require('../../models/blacklistcmd');
 
 module.exports = {
     name: 'interactionCreate',
@@ -25,6 +26,20 @@ module.exports = {
                 ]
             })
             return console.log(`${interaction.user.id} tried using ${interaction.commandName}, but is blacklisted in ${interaction.guild.name}.`);
+        }
+
+        const bcmd = await blacklistcmd.findOne({ Guild: interaction.guildId });
+
+        if(bcmd && bcmd.Commands.includes(interaction.commandName)) {
+            interaction.reply({
+                embeds: [
+                    new EmbedBuilder()
+                    .setTitle(`Blacklisted! 🚫`)
+                    .setDescription(`<@${interaction.member.id}>, this command has been blacklisted by an admin.\nThis command will be unavailable unless the blacklist is lifted.`)
+                    .setColor('Red')
+                ]
+            })
+            return console.log(`${interaction.user.id} tried using ${interaction.commandName}, but the command is blacklisted.`);
         }
 
         console.log(`${interaction.user.tag} ran /${interaction.commandName}`);
