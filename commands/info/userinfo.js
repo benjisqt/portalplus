@@ -26,40 +26,8 @@ module.exports = {
     async execute(interaction) {
         const user = interaction.options.getUser('user') || interaction.user;
         const member = interaction.guild.members.cache.get(user.id);
+        if(!member) return interaction.reply({ content: `That user is not in this guild.`, ephemeral: true });
         const silent = interaction.options.getBoolean('silent') || false;
-
-        const activityType = [
-            'Playing',
-            'Streaming',
-            'Listening To',
-            'Watching',
-            'Custom',
-            'Competing In'
-        ];
-
-        const month = [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-            'July',
-            'August',
-            'September',
-            'October',
-            'November',
-            'December',
-        ]
-        
-        const createdDate = new Date(user.createdTimestamp);
-        const createdDay = createdDate.getDay().toLocaleString();
-        const createdMonth = createdDate.getMonth().toLocaleString();
-        const createdYear = createdDate.getFullYear().toString();
-        const createdHour = createdDate.getHours().toLocaleString();
-        const createdMins = createdDate.getMinutes().toLocaleString();
-
-        // console.log(`${createdDay} ${month[createdMonth]} ${createdYear} ${createdHour} ${createdMins}`);
 
         const memberRoles = member.roles.cache.filter((roles) => roles.id !== interaction.guild.id).map((role) => role.toString());
 
