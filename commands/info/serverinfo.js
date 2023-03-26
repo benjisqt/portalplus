@@ -47,6 +47,7 @@ module.exports = {
             return interaction.reply({
                 embeds: [
                     new EmbedBuilder()
+                    .setTitle(interaction.guild.name)
                     .setThumbnail(interaction.guild.iconURL({ dynamic: true, size: 1024 }))
                     .setDescription(`This guild is owned by ${owner}`)
                     .addFields(
@@ -62,6 +63,7 @@ module.exports = {
             return interaction.reply({
                 embeds: [
                     new EmbedBuilder()
+                    .setTitle(interaction.guild.name)
                     .setThumbnail(interaction.guild.iconURL({ dynamic: true, size: 1024 }))
                     .setDescription(`This guild is owned by ${owner}`)
                     .addFields(
