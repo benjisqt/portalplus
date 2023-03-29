@@ -1,6 +1,7 @@
 const chalk = require('chalk');
 const fs = require('fs');
 const mongoose = require('mongoose');
+const ascii = require('ascii-table');
 
 async function loadEvents(client) {
     const folders = fs.readdirSync(`./events`);
@@ -39,6 +40,7 @@ async function loadCommands(client) {
             client.commands.set(cmd.data.name, cmd);
             
             commandsArray.push(cmd.data.toJSON());
+
 
             continue;
         }
