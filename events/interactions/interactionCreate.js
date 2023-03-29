@@ -3,6 +3,7 @@ const replies = require('../../util/replies');
 const blacklistuser = require('../../models/blacklistuser');
 const blacklistcmd = require('../../models/blacklistcmd');
 const vip = require('../../models/vip');
+const vipcodes = require('../../models/vipcodes');
 
 module.exports = {
     name: 'interactionCreate',
