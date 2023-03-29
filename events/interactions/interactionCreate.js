@@ -2,6 +2,7 @@ const { ChatInputCommandInteraction, Client, EmbedBuilder } = require('discord.j
 const replies = require('../../util/replies');
 const blacklistuser = require('../../models/blacklistuser');
 const blacklistcmd = require('../../models/blacklistcmd');
+const vip = require('../../models/vip');
 
 module.exports = {
     name: 'interactionCreate',
@@ -47,6 +48,10 @@ module.exports = {
         const command = client.commands.get(interaction.commandName);
 
         if(!command) return replies.Reply(interaction, 'Red', '🚫', `This command is outdated or has been removed.`, true);
+
+        const checkvip = await vip.findOne({ Guild: interaction.guildId });
+
+        if(!checkvip && command.vip === true) return interaction.reply({ content: `You need a premium license to run this command!` });
 
         command.execute(interaction, client);
     }
