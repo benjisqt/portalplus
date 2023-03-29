@@ -42,6 +42,14 @@ module.exports = {
             .setDescription('Revoke a VIP license')
         )
         .addSubcommand((sub) =>
+            sub.setName('all')
+            .setDescription('See all VIP codes')
+        )
+        .addSubcommand((sub) =>
+            sub.setName('allredeemed')
+            .setDescription('See all redeemed VIP codes')
+        )
+        .addSubcommand((sub) =>
             sub.setName('redeem')
             .setDescription('Redeem a VIP code')
             .addStringOption((opt) =>
@@ -101,12 +109,14 @@ module.exports = {
                             inline: true
                         }, )
                         .setColor('Gold')
-                    ], ephemeral: true
+                    ],
+                    ephemeral: true
                 })
             }
             break;
 
         case 'redeem': {
+            if(!interaction.memberPermissions.has('Administrator')) return Reply(interaction, 'Red', '🚫', 'Only Administrators can redeem a license!', true);
             if (!interaction.memberPermissions.has('Administrator')) return Reply(
                 interaction, 'Red', '🚫', 'Only people with the Administrator permission can run this command!', true
             );
@@ -159,6 +169,8 @@ module.exports = {
         break;
 
         case 'revoke': {
+            if(!interaction.memberPermissions.has('Administrator')) return Reply(interaction, 'Red', '🚫', 'Only Administrators can revoke a license!', true);
+
             const premiumGuild = await vip.findOne({
                 Guild: interaction.guildId
             });
@@ -183,11 +195,14 @@ module.exports = {
         break;
 
         case 'status': {
+            if(!interaction.memberPermissions.has('Administrator')) return Reply(interaction, 'Red', '🚫', 'Only Administrators can see the status of a license!', true);
             const premiumGuild = await vip.findOne({
                 Guild: interaction.guildId
             });
 
-            if(!premiumGuild) return interaction.reply({ content: `No premium license has been redeemed for this guild.` });
+            if (!premiumGuild) return interaction.reply({
+                content: `No premium license has been redeemed for this guild.`
+            });
 
             var date = new Date(premiumGuild.Expires);
 
@@ -196,23 +211,82 @@ module.exports = {
             let redeemed;
 
             let user = interaction.guild.members.cache.get(premiumGuild.User);
-            if(user) redeemed = user.user.tag;
-            if(!user) redeemed = 'User has left.';
+            if (user) redeemed = user.user.tag;
+            if (!user) redeemed = 'User has left.';
 
             return interaction.reply({
                 embeds: [
                     new EmbedBuilder()
                     .setTitle(`VIP license: ${interaction.guild.name}`)
-                    .addFields(
-                        { name: 'Expires On', value: `<t:${Math.round(unixTimestamp)}:f> (<t:${Math.round(unixTimestamp)}:R>)` },
-                        { name: 'Redeemed By', value: `\`${redeemed}\`` },
-                        { name: 'Code', value: `${premiumGuild.Code}` },
-                        { name: 'Plan', value: `${premiumGuild.Duration}` },
-                    )
+                    .addFields({
+                        name: 'Expires On',
+                        value: `<t:${Math.round(unixTimestamp)}:f> (<t:${Math.round(unixTimestamp)}:R>)`
+                    }, {
+                        name: 'Redeemed By',
+                        value: `\`${redeemed}\``
+                    }, {
+                        name: 'Code',
+                        value: `${premiumGuild.Code}`
+                    }, {
+                        name: 'Plan',
+                        value: `${premiumGuild.Duration}`
+                    }, )
                     .setColor('Gold')
-                    .setAuthor({ name: `${interaction.guild.members.me.user.username}`, iconURL: client.user.displayAvatarURL() })
-                    .setThumbnail(interaction.guild.iconURL({ dynamic: true, size: 1024 }))
+                    .setAuthor({
+                        name: `${interaction.guild.members.me.user.username}`,
+                        iconURL: client.user.displayAvatarURL()
+                    })
+                    .setThumbnail(interaction.guild.iconURL({
+                        dynamic: true,
+                        size: 1024
+                    }))
                 ]
+            })
+        }
+        break;
+
+        case 'allredeemed': {
+            if (interaction.member.id !== '1005460072274595960') return interaction.reply({
+                content: `Only the bot owner can execute this command!`
+            });
+            var array = (await vipcodes.find()).map(function (code) {
+                return code.Code;
+            });
+
+            const vipguildinfo = await (await vip.find({
+                Code: array
+            })).map(function (guild) {
+                return `Guild ID: ${guild.Guild}\nDuration: ${guild.Duration}\nCode: ${guild.Code}`;
+            });
+
+            return interaction.reply({
+                embeds: [
+                    new EmbedBuilder()
+                    .setTitle(`All Redeemed VIP codes`)
+                    .setDescription(`${vipguildinfo.join('\n\n')}`)
+                    .setColor('Random')
+                ],
+                ephemeral: true
+            })
+        }
+        break;
+
+        case 'all': {
+            if (interaction.member.id !== '1005460072274595960') return interaction.reply({
+                content: `Only the bot owner can execute this command!`
+            });
+            var array = (await vipcodes.find()).map(function (code) {
+                if(!code) return interaction.reply({ content: `There appears to be no VIP codes.` });
+                return code.Code;
+            });
+
+            return interaction.reply({
+                embeds: [
+                    new EmbedBuilder()
+                    .setTitle(`All VIP codes (redeemed or not)`)
+                    .setColor('Random')
+                    .setDescription(`${array.join('\n')}`)
+                ], ephemeral: true
             })
         }
         break;
