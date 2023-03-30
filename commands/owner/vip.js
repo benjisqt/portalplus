@@ -70,9 +70,6 @@ module.exports = {
 
     async execute(interaction, client) {
         const sub = interaction.options.getSubcommand();
-        const vipee = vip.findOne({
-            Guild: interaction.guildId
-        });
 
         switch (sub) {
             case 'gen': {
@@ -109,8 +106,7 @@ module.exports = {
                             inline: true
                         }, )
                         .setColor('Gold')
-                    ],
-                    ephemeral: true
+                    ], ephemeral: true
                 })
             }
             break;
@@ -130,17 +126,20 @@ module.exports = {
             });
 
             if (!validCode) return interaction.reply({
-                content: `That is not a valid generated code.`
+                content: `That is not a valid generated code.`,
+                ephemeral: true,
             });
             if (redeemedCode) return interaction.reply({
-                content: `This code has already been redeemed.`
+                content: `This code has already been redeemed.`,
+                ephemeral: true,
             });
 
             const redeemedGuild = await vip.findOne({
                 Guild: interaction.guildId
             });
             if (redeemedGuild) return interaction.reply({
-                content: `This guild already has a VIP license.`
+                content: `This guild already has a VIP license.`,
+                ephemeral: true,
             });
 
             let dt = new Date();
@@ -162,8 +161,28 @@ module.exports = {
                 User: interaction.user.id
             }).save();
 
+            var unixTimestamp = moment(dt).unix();
+
+            let redeemed;
+            if(validCode.Length == 'daily') redeemed = 1;
+            if(validCode.Length == 'weekly') redeemed = 7;
+            if(validCode.Length == 'monthly') redeemed = 30;
+            if(validCode.Length == 'yearly') redeemed = 365;
+
             return interaction.reply({
-                content: `Code redeemed! Duration: ${expiration} day(s)`
+                embeds: [
+                    new EmbedBuilder()
+                    .setTitle(`Code Redeemed`)
+                    .setDescription(`A VIP license has been redeemed for this guild.`)
+                    .addFields(
+                        { name: 'Duration', value: `${redeemed} day(s)` },
+                        { name: 'Code Redeemed', value: `${validCode.Code}` },
+                        { name: 'Expires', value: `<t:${Math.round(unixTimestamp)}:f> (<t:${Math.round(unixTimestamp)}:R>)` },
+                    )
+                    .setColor('Green')
+                    .setThumbnail(interaction.guild.iconURL({ dynamic: true, size: 1024 }))
+                ],
+                ephemeral: true
             })
         }
         break;
@@ -179,7 +198,8 @@ module.exports = {
             });
             let premiumCode = premiumGuild.Code;
             if (!premiumGuild) return interaction.reply({
-                content: `This guild doesn't have a VIP license.`
+                content: `This guild doesn't have a VIP license.`,
+                ephemeral: true,
             });
 
             premiumGuild.deleteOne({
@@ -189,7 +209,8 @@ module.exports = {
                 Code: premiumCode
             });
             return interaction.reply({
-                content: `VIP license revoked.`
+                content: `VIP license revoked.`,
+                ephemeral: true
             });
         }
         break;
@@ -201,7 +222,8 @@ module.exports = {
             });
 
             if (!premiumGuild) return interaction.reply({
-                content: `No premium license has been redeemed for this guild.`
+                content: `No premium license has been redeemed for this guild.`,
+                ephemeral: true,
             });
 
             var date = new Date(premiumGuild.Expires);

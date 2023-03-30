@@ -4,6 +4,7 @@ const blacklistuser = require('../../models/blacklistuser');
 const blacklistcmd = require('../../models/blacklistcmd');
 const vip = require('../../models/vip');
 const vipcodes = require('../../models/vipcodes');
+const chalk = require('chalk');
 
 module.exports = {
     name: 'interactionCreate',
@@ -52,7 +53,14 @@ module.exports = {
 
         const checkvip = await vip.findOne({ Guild: interaction.guildId });
 
-        if(!checkvip && command.vip === true) return interaction.reply({ content: `You need a premium license to run this command!` });
+        if(!checkvip && command.vip === true) {
+            interaction.reply({ content: `You need a premium license to run this command!` });
+            return console.log(`${chalk.magenta(chalk.italic(`System`))} ${chalk.white(chalk.bold(`>>`))} ${chalk.red(chalk.bold(`${interaction.user.tag} attempted to use a premium command!`))}`);
+        }
+        if(command.owner === true && interaction.member.id != '1005460072274595960'){
+            interaction.reply({ content: `This is an owner-only command!` });
+            return console.log(`${chalk.magenta(chalk.italic(`System`))} ${chalk.white(chalk.bold(`>>`))} ${chalk.red(chalk.bold(`${interaction.user.tag} attempted to use an owner-only command!`))}`);
+        }
 
         command.execute(interaction, client);
     }
