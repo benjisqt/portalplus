@@ -5,6 +5,7 @@ const blacklistcmd = require('../../models/blacklistcmd');
 const vip = require('../../models/vip');
 const vipcodes = require('../../models/vipcodes');
 const chalk = require('chalk');
+const cooldown = new Set();
 
 module.exports = {
     name: 'interactionCreate',
@@ -16,6 +17,7 @@ module.exports = {
 
     async execute(interaction, client) {
         if(!interaction.isChatInputCommand()) return;
+        if(interaction.user.bot) return;
 
         const data = await blacklistuser.findOne({ Guild: interaction.guildId });
 
@@ -61,6 +63,8 @@ module.exports = {
             interaction.reply({ content: `This is an owner-only command!` });
             return console.log(`${chalk.magenta(chalk.italic(`System`))} ${chalk.white(chalk.bold(`>>`))} ${chalk.red(chalk.bold(`${interaction.user.tag} attempted to use an owner-only command!`))}`);
         }
+
+        if(command.disabled === true) return replies.Reply(interaction, 'Red', '❗️', 'This command has been globally disabled by the bot owner.', true);
 
         command.execute(interaction, client);
     }

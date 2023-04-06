@@ -12,6 +12,8 @@ module.exports = {
      */
 
     async execute(message, client) {
+        if(message.author.bot) return;
+
         const data = await vip.findOne({ Guild: message.guild.id });
         if(!data) return;
         if(Date.now() > data.Expires) {

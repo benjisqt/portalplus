@@ -32,8 +32,11 @@ module.exports = {
             data.save();
             const msg = await message.reply({ content: `${message.author} RUINED it at ${message.content}, restarting from 0.` });
             setTimeout(async () => {
-                await msg.delete();
-                await message.delete();
+                if(message.content > 100) {
+                    await message.channel.bulkDelete(100);
+                } else {
+                    await message.channel.bulkDelete(message.content);
+                }
             }, 3000);
         }
     }
