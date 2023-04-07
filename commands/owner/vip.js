@@ -357,6 +357,8 @@ module.exports = {
                 })).map(function (guild) {
                     return `Guild ID: ${guild.Guild}\nDuration: ${guild.Duration}\nCode: ${guild.Code}`;
                 });
+
+                if(!vipguildinfo.length) return Reply(interaction, 'Red', '❗️', `No VIP licenses have been redeemed.`, true);
                 
                 return interaction.reply({
                     embeds: [
