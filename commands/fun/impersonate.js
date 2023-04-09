@@ -1,7 +1,7 @@
 const { SlashCommandBuilder, ChatInputCommandInteraction, SystemChannelFlagsBitField } = require('discord.js');
 
 module.exports = {
-    disabled: false,
+    disabled: true,
     data: new SlashCommandBuilder()
     .setName('impersonate')
     .setDescription('Impersonate a user with a webhook!')

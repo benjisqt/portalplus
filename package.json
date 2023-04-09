@@ -33,6 +33,7 @@
     "discord-backup": "^3.3.2",
     "discord.js": "^14.8.0",
     "fs": "^0.0.1-security",
+    "lyrics-finder": "^21.7.0",
     "moment": "^2.29.4",
     "moment-duration-format": "^2.3.2",
     "mongoose": "^7.0.2",
@@ -42,6 +43,7 @@
     "openweather-apis": "^4.4.2",
     "reddit-fetch": "^1.5.1",
     "relevant-urban": "^2.0.0",
+    "song-lyrics-api": "^1.1.0",
     "weather-js": "^2.0.0"
   }
 }
