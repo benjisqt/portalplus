@@ -13,6 +13,10 @@ module.exports = {
             .setDescription('The user who\'s Capri-Sun you want to check!')
             .setRequired(true)
         )
+        .addBooleanOption((opt) =>
+            opt.setName('silent')
+            .setDescription('Whether command feedback should only be sent to you')
+        )
     )
     .addSubcommand((sub) =>
         sub.setName('roll')
@@ -31,6 +35,7 @@ module.exports = {
             case 'check' : {
                 const user = interaction.options.getUser('user');
                 const member = interaction.guild.members.cache.get(user.id);
+                const silent = interaction.options.getBoolean('silent') || false;
                 if(!member) return interaction.reply({ content: `That user isn't in this server!`, ephemeral: true });
 
                 const valid = await caprisun.findOne({ Guild: interaction.guildId, User: user.id });
@@ -60,15 +65,27 @@ module.exports = {
                     img = `https://cdn.discordapp.com/attachments/1057077101662052494/1094446913874571304/5449000008367.jpeg`;
                 };
 
-                return interaction.reply({
-                    embeds: [
-                        new EmbedBuilder()
-                        .setTitle(`${user.tag}'s Capri-Sun!`)
-                        .setDescription(`${user.username} is a ${valid.Capri} Capri-Sun. This means they are:\n${desc}`)
-                        .setImage(img)
-                        .setColor('Random')
-                    ]
-                });
+                if(silent === true) {
+                    return interaction.reply({
+                        embeds: [
+                            new EmbedBuilder()
+                            .setTitle(`${user.tag}'s Capri-Sun!`)
+                            .setDescription(`${user.username} is a ${valid.Capri} Capri-Sun. This means they are:\n${desc}`)
+                            .setImage(img)
+                            .setColor('Random')
+                        ], ephemeral: true
+                    });
+                } else {
+                    return interaction.reply({
+                        embeds: [
+                            new EmbedBuilder()
+                            .setTitle(`${user.tag}'s Capri-Sun!`)
+                            .setDescription(`${user.username} is a ${valid.Capri} Capri-Sun. This means they are:\n${desc}`)
+                            .setImage(img)
+                            .setColor('Random')
+                        ]
+                    });
+                }
             }
             break;
 
