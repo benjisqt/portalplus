@@ -43,7 +43,7 @@ module.exports = {
             img = `https://cdn.discordapp.com/attachments/1057077101662052494/1094446913874571304/5449000008367.jpeg`;
         };
 
-        const valid = caprisun.findOne({ Guild: interaction.guildId, User: interaction.user.id });
+        const valid = await caprisun.findOne({ Guild: interaction.guildId, User: interaction.user.id });
         if(valid) return interaction.reply({ embeds: [
             new EmbedBuilder()
             .setTitle(`Hey!`)
