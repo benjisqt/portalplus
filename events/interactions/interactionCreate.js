@@ -66,6 +66,16 @@ module.exports = {
 
         if(command.disabled === true) return replies.Reply(interaction, 'Red', '❗️', 'This command has been globally disabled by the bot owner.', true);
 
+        if(interaction.commandName === 'marry') {
+            if(cooldown.has(interaction.user.id)) return replies.Reply(interaction, 'Red', '❗️', 'This command is on cooldown.', true);
+
+            setTimeout(() => {
+                cooldown.delete(interaction.user.id);
+            }, 30000)
+
+            return command.execute(interaction, client);
+        }
+        
         command.execute(interaction, client);
     }
 }
