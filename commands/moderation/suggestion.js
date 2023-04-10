@@ -58,7 +58,7 @@ module.exports = {
                     if(data.Enabled === true) return interaction.reply({ content: `The suggestion system is already enabled! If you want to edit the channel, run /suggestion edit`, ephemeral: true });
                     
                     const filter = { Guild: interaction.guildId };
-                    const filter2 = { Channel: ch.id };
+                    const filter2 = { Channel: ch.id, Enabled: true };
 
                     suggestion.findOneAndUpdate(filter, filter2, { new: true });
                 } else {
