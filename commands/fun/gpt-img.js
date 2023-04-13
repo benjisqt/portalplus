@@ -2,8 +2,7 @@ const { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } = requi
 const { Configuration, OpenAIApi } = require('openai');
 
 const configuration = new Configuration({
-    apiKey: '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',
-    organization: 'org-c4gV45IctUc21D1W4WJoxVHi'
+    apiKey: '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',
 });
 
 const openai = new OpenAIApi(configuration);
