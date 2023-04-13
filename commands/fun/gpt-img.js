@@ -27,7 +27,7 @@ module.exports = {
      * @param {ChatInputCommandInteraction} interaction
      */
 
-    async execute(interaction) {
+    async execute(interaction, client) {
         const emoji = client.emojis.cache.get('1096078204680286329');
 
         if(silent === true) {
