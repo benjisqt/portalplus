@@ -336,7 +336,7 @@ module.exports = {
 
                         if(interaction.user.id != guild.ownerId) return await replies.Reply(interaction, 'Red', '❗️', 'You have to be the server owner in order to execute this command!', true);
 
-                        if(!users) return replies.Reply(interaction, 'Red', '❗️', 'There are no users in this guild.', true);
+                        if(users.size <= 0) return replies.Reply(interaction, 'Red', '❗️', 'There are no users banned in this guild.', true);
 
                         if(silent === true) {
                             await interaction.reply({ content: `${emoji} Unbanning everyone in the server. This may take a while, depending on the amount of bans you have.`, ephemeral: true });
