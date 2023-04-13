@@ -29,6 +29,7 @@ module.exports = {
 
     async execute(interaction, client) {
         const emoji = client.emojis.cache.get('1096078204680286329');
+        const silent = interaction.options.getBoolean('silent') || false;
 
         if(silent === true) {
             await interaction.reply({ content: `${emoji} Generating GPT-4 image...`, ephemeral: true})
@@ -37,7 +38,6 @@ module.exports = {
         }
 
         const prompt = interaction.options.getString('prompt');
-        const silent = interaction.options.getBoolean('silent') || false;
 
         const response = await openai.createImage({
             prompt: `${prompt}`,
