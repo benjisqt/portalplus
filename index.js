@@ -13,6 +13,11 @@ const client = new Client({
 client.config = require('./config.json');
 client.commands = new Collection();
 const handlers = require('./util/handlers');
+const process = require('node:process');
+
+process.on('unhandledRejection', (reason, promise) => {
+    console.log('Unhandled Rejection At:', promise, 'reason:', reason);
+})
 
 client.login(client.config.token).then(() => {
     handlers.loadCommands(client);
