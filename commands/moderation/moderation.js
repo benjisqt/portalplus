@@ -325,14 +325,16 @@ module.exports = {
                     break;
 
                     case 'unbanall': {
-                        const { options, guild, ownerId, user } = interaction;
+                        const { options, guild, user } = interaction;
 
                         const emoji = client.emojis.cache.get('1096078204680286329');
 
                         const users = await guild.bans.fetch();
                         const ids = users.map(u => u.user.id);
 
-                        if(user.id != ownerId) return await replies.Reply(interaction, 'Red', '❗️', 'You have to be the server owner in order to execute this command!', true);
+                        await guild.fetchOwner();
+
+                        if(interaction.user.id != guild.ownerId) return await replies.Reply(interaction, 'Red', '❗️', 'You have to be the server owner in order to execute this command!', true);
 
                         if(!users) return replies.Reply(interaction, 'Red', '❗️', 'There are no users in this guild.', true);
 
