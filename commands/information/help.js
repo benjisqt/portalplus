@@ -4,8 +4,8 @@ const fs = require('fs');
 module.exports = {
     category: 'Information',
     data: new SlashCommandBuilder()
-    .setName('help')
-    .setDescription('Help command!'),
+        .setName('help')
+        .setDescription('Help command!'),
 
     /**
      * 
@@ -17,8 +17,8 @@ module.exports = {
         let categories = [];
 
         client.commands.forEach((cmd) => {
-            if(!cmd.category) return;
-            if(categories.includes(cmd.category)) return;
+            if (!cmd.category) return;
+            if (categories.includes(cmd.category)) return;
 
             categories.push(cmd.category);
         });
@@ -65,22 +65,18 @@ module.exports = {
             return i.reply({
                 embeds: [
                     new EmbedBuilder()
-                    .setTitle(`Category: ` + i.values[0])
-                    .addFields(
-                        client.commands.filter((cmd) => cmd.category === i.values[0])
-                        .map((cmd) => {
-                            if(cmd.type === 1) {
-                                return {
-                                    name: `- \`/${cmd.name}\``,
-                                    value: `> ${cmd.description}`,
-                                    inline: true
-                                }
-                            } else {
-                                return;
-                            }
-                        })
-                    )
-                    .setColor('Blurple')
+                        .setTitle(`Category: ` + i.values[0])
+                        .addFields(
+                            client.commands.filter((cmd) => cmd.category === i.values[0])
+                                .map((cmd) => {
+                                    return {
+                                        name: `- \`/${cmd.data.name}\``,
+                                        value: `> ${cmd.data.description || "No Description."}`,
+                                        inline: true
+                                    }
+                                })
+                        )
+                        .setColor('Blurple')
                 ],
                 ephemeral: true
             })
@@ -90,15 +86,15 @@ module.exports = {
             msg.edit({
                 embeds: [
                     new EmbedBuilder()
-                    .setTitle(`Help Menu Expired`)
-                    .setDescription(`Your help menu has expired after 30 seconds, please try running the command again.`)
-                    .setColor('Red')
+                        .setTitle(`Help Menu Expired`)
+                        .setDescription(`Your help menu has expired after 30 seconds, please try running the command again.`)
+                        .setColor('Red')
                 ],
                 components: [
                     new ActionRowBuilder()
-                    .addComponents(
-                        components[0].setDisabled(true)
-                    )
+                        .addComponents(
+                            components[0].setDisabled(true)
+                        )
                 ]
             });
         });
