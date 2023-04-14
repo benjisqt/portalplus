@@ -66,8 +66,8 @@ module.exports = {
                 value: `${client.guilds.cache.size} servers`,
                 inline: true
             }, {
-                name: 'Platform',
-                value: `${os.platform}`,
+                name: 'Author',
+                value: `${require('../../package.json').author || "None"}`,
                 inline: true
             }, {
                 name: 'Discord Latency',
@@ -79,7 +79,7 @@ module.exports = {
                 inline: true
             }, {
                 name: 'CPU',
-                value: `${os.cpus().map(i => `${i.model} - ${i.speed}GHz`)[0]}`,
+                value: `${os.cpus().map(i => `${i.model}`)[0]}`,
                 inline: true
             }, {
                 name: 'discord.js version',
