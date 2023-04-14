@@ -64,8 +64,8 @@ module.exports = {
 
         setTimeout(() => {
             return interaction.editReply({
-                content: `\`:8ball:\` Result: ${result}\nQuestion: **${query}**`
+                content: `\`🎱\` Result: ${result}\nQuestion: **${query}**`
             });
-        }, 2000)
+        }, 1250)
     }
 }
