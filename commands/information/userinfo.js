@@ -6,6 +6,7 @@ const {
 const moment = require('moment');
 
 module.exports = {
+    category: 'Information',
     data: new SlashCommandBuilder()
     .setName('userinfo')
     .setDescription('Information on a user')

@@ -12,6 +12,7 @@ const {
 } = require('../../util/replies');
 
 module.exports = {
+    category: 'VIP',
     data: new SlashCommandBuilder()
         .setName('vip')
         .setDescription('VIP system commands')

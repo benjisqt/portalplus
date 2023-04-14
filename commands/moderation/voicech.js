@@ -9,6 +9,7 @@ const {
 } = require('../../util/replies');
 
 module.exports = {
+    category: 'Moderation',
     data: new SlashCommandBuilder()
         .setName('voicech')
         .setDescription('Voice channel management commands')

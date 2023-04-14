@@ -8,6 +8,7 @@ const fetch = require('node-fetch');
 const { Reply } = require('../../util/replies');
 
 module.exports = {
+    category: 'Information',
     data: new SlashCommandBuilder()
         .setName('minecraft')
         .setDescription('Minecraft-related commands')

@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, ChatInputCommandInteraction } = require('discord.js');
 
 module.exports = {
+    category: 'Fun',
     data: new SlashCommandBuilder()
     .setName('catsay')
     .setDescription('Make the cat say something of your choice!')

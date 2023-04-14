@@ -3,8 +3,9 @@ const fetch = require('node-fetch');
 const { Reply } = require('../../util/replies');
 
 module.exports = {
+    category: 'Information',
     data: new SlashCommandBuilder()
-    .setName('ipaddress')
+    .setName('ip')
     .setDescription('Provides detailed information about an IP address')
     .addStringOption((opt) =>
         opt.setName('ip')

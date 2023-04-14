@@ -8,6 +8,7 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 module.exports = {
+    category: 'Fun',
     data: new SlashCommandBuilder()
         .setName('gpt-img')
         .setDescription('Chat GPT image generation!')

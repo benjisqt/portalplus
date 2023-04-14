@@ -2,6 +2,7 @@ const { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } = requi
 const { getAnimeGif } = require('anime-gifs-api');
 
 module.exports = {
+    category: 'Fun',
     data: new SlashCommandBuilder()
     .setName('slap')
     .setDescription('Slap a member of the server!')

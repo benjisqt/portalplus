@@ -5,6 +5,7 @@ const {
 const { Reply } = require('../../util/replies');
 
 module.exports = {
+    category: 'Fun',
     data: new SlashCommandBuilder()
         .setName('hate')
         .setDescription('Check your hate rate with someone >:(')

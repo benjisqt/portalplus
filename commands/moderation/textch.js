@@ -7,6 +7,7 @@ const {
 const { Reply } = require('../../util/replies');
 
 module.exports = {
+    category: 'Moderation',
     data: new SlashCommandBuilder()
         .setName('textch')
         .setDescription('Text channel management commands')

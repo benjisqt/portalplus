@@ -7,6 +7,7 @@ const blacklistcmd = require('../../models/blacklistcmd');
 const { Reply } = require('../../util/replies');
 
 module.exports = {
+    category: 'Admin',
     data: new SlashCommandBuilder()
         .setName('blacklistcmd')
         .setDescription('Blacklist a command')

@@ -2,6 +2,7 @@ const { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } = requi
 const fetch = require('reddit-fetch');
 
 module.exports = {
+    category: 'Fun',
     data: new SlashCommandBuilder()
     .setName('food')
     .setDescription('Send a satisfying food image')

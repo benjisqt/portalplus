@@ -3,6 +3,7 @@ const fetch = require('reddit-fetch');
 const replies = require('../../util/replies');
 
 module.exports = {
+    category: 'Fun',
     data: new SlashCommandBuilder()
     .setName('meme')
     .setDescription('Send a meme from a custom subreddit')

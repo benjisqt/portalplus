@@ -2,6 +2,7 @@ const { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } = requi
 const { Reply } = require('../../util/replies');
 
 module.exports = {
+    category: 'Information',
     data: new SlashCommandBuilder()
     .setName('av')
     .setDescription('Get the avatar of a user!')

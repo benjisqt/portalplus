@@ -10,6 +10,7 @@ const {
 const os = require('os');
 
 module.exports = {
+    category: 'Information',
     data: new SlashCommandBuilder()
         .setName('bot')
         .setDescription('Stats for the bot'),

@@ -6,6 +6,7 @@ const antijoin = require('../../models/antijoin');
 const { Reply } = require('../../util/replies');
 
 module.exports = {
+    category: 'Config',
     data: new SlashCommandBuilder()
         .setName('antijoin')
         .setDescription('Stop all new people from rejoining!')

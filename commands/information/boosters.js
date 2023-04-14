@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } = require('discord.js');
 
 module.exports = {
+    category: 'Information',
     data: new SlashCommandBuilder()
     .setName('boosters')
     .setDescription('See all guild boosters')

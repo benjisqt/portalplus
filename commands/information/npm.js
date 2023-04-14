@@ -2,6 +2,7 @@ const { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } = requi
 const fetch = require('node-fetch');
 
 module.exports = {
+    category: 'Information',
     data: new SlashCommandBuilder()
     .setName('npm')
     .setDescription('Get info of a NPM repository')

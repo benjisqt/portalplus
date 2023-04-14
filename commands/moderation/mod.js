@@ -9,6 +9,7 @@ const replies = require('../../util/replies');
 const ms = require('ms');
 
 module.exports = {
+    category: 'Moderation',
     data: new SlashCommandBuilder()
         .setName('mod')
         .setDescription('Portal\'s moderation commands!')

@@ -2,6 +2,7 @@ const { SlashCommandBuilder, ChatInputCommandInteraction, ChannelType } = requir
 const boost = require('../../models/boost');
 
 module.exports = {
+    category: 'Config',
     data: new SlashCommandBuilder()
         .setName('boostdetection')
         .setDescription('Nitro Boost Detection!')

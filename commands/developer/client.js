@@ -3,6 +3,7 @@ const token = require('../../config.json').token;
 
 module.exports = {
     owner: true,
+    category: 'Developer',
     data: new SlashCommandBuilder()
         .setName('client')
         .setDescription('Developer settings for the bot!')

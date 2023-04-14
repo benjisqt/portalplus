@@ -3,6 +3,7 @@ const marry = require('../../models/marry');
 const { Reply } = require('../../util/replies');
 
 module.exports = {
+    category: 'Fun',
     data: new SlashCommandBuilder()
     .setName('marry')
     .setDescription('Marry someone on the server!')

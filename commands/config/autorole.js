@@ -3,6 +3,7 @@ const autorole = require('../../models/autorole');
 const { Reply } = require('../../util/replies');
 
 module.exports = {
+    category: 'Config',
     data: new SlashCommandBuilder()
     .setName('autorole')
     .setDescription('Autorole config')

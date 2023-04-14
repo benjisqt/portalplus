@@ -3,6 +3,7 @@ const urban = require('relevant-urban');
 const { Reply } = require('../../util/replies');
 
 module.exports = {
+    category: 'Fun',
     data: new SlashCommandBuilder()
     .setName('urban')
     .setDescription('Search for a definition from the Urban Dictionary')

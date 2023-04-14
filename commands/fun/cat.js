@@ -2,6 +2,7 @@ const { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } = requi
 const fetch = require('node-fetch');
 
 module.exports = {
+    category: 'Fun',
     data: new SlashCommandBuilder()
     .setName('cat')
     .setDescription('Show a cute cat!')

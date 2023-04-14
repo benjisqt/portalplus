@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const { Reply } = require('../../util/replies');
 
 module.exports = {
+    category: 'Information',
     data: new SlashCommandBuilder()
     .setName('ping')
     .setDescription('Websocket and database ping')

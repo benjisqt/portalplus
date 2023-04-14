@@ -1,0 +1,16 @@
+{
+    "handler": {
+        "directories": {
+            "emojis": {
+                "Admin": "👨‍💼",
+                "Config": "⚙️",
+                "Developer": "💻",
+                "Fun": "🤣",
+                "Information": "❓",
+                "Moderation": "🛡️",
+                "Owner": "❌",
+                "VIP": "🌟"
+            }
+        }
+    }
+}

@@ -2,6 +2,7 @@ const { SlashCommandBuilder, ChatInputCommandInteraction } = require('discord.js
 const { Reply } = require('../../util/replies');
 
 module.exports = {
+    category: 'Fun',
     data: new SlashCommandBuilder()
     .setName('pp')
     .setDescription('Check people\'s PP size')

@@ -3,6 +3,7 @@ const counting = require('../../models/counting');
 const { Reply } = require('../../util/replies');
 
 module.exports = {
+    category: 'Config',
     data: new SlashCommandBuilder()
     .setName('counting')
     .setDescription('Enable or disable the counting system!')

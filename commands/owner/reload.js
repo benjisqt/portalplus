@@ -5,6 +5,7 @@ const { Reply } = require('../../util/replies');
 
 module.exports = {
     owner: true,
+    category: 'Owner',
     data: new SlashCommandBuilder()
     .setName('reload')
     .setDescription('Reload commands or events')

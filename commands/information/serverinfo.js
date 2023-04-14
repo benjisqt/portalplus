@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder, Client } = require('discord.js');
 
 module.exports = {
+    category: 'Information',
     data: new SlashCommandBuilder()
     .setName('serverinfo')
     .setDescription('Get information about the current server')

@@ -3,6 +3,7 @@ const { EditReply } = require('../../util/replies');
 const weather = require('weather-js');
 
 module.exports = {
+    category: 'Information',
     data: new SlashCommandBuilder()
     .setName('weather')
     .setDescription('Weather command!')

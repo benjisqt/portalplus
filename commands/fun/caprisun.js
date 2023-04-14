@@ -2,6 +2,7 @@ const { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } = requi
 const caprisun = require('../../models/caprisun');
 
 module.exports = {
+    category: 'Fun',
     data: new SlashCommandBuilder()
     .setName('caprisun')
     .setDescription('See what caprisun you are')

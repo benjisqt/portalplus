@@ -2,6 +2,7 @@ const { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder, ChannelT
 const suggestion = require('../../models/suggestion');
 
 module.exports = {
+    category: 'Config',
     data: new SlashCommandBuilder()
     .setName('suggestion')
     .setDescription('Suggestion system')

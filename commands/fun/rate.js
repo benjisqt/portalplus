@@ -7,6 +7,7 @@ const {
 } = require('../../util/replies');
 
 module.exports = {
+    category: 'Fun',
     data: new SlashCommandBuilder()
         .setName('rate')
         .setDescription('Rate commands')

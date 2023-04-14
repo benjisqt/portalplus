@@ -2,6 +2,7 @@ const { SlashCommandBuilder, ChatInputCommandInteraction, SystemChannelFlagsBitF
 
 module.exports = {
     disabled: false,
+    category: 'Fun',
     data: new SlashCommandBuilder()
     .setName('impersonate')
     .setDescription('Impersonate a user with a webhook!')

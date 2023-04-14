@@ -10,6 +10,7 @@ const {
 } = require('../../util/replies');
 
 module.exports = {
+    category: 'Admin',
     data: new SlashCommandBuilder()
         .setName('blacklistuser')
         .setDescription('Blacklist a user from using Portal commands!')

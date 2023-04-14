@@ -8,6 +8,7 @@ const {
 } = require('anime-gifs-api');
 
 module.exports = {
+    category: 'Fun',
     data: new SlashCommandBuilder()
         .setName('cuddle')
         .setDescription('To cuddle with someone 🤗')
