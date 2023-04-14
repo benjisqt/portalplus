@@ -49,17 +49,17 @@ module.exports = {
         )
         .addSubcommand((sub) =>
             sub.setName('slowmode')
-            .setDescription('Set slowmode in a channel!')
-            .addStringOption((opt) =>
-                opt.setName('duration')
-                .setDescription('The duration of the slowmode (3s, 3m, 3h)')
-                .setRequired(true)
-            )
-            .addChannelOption((opt) =>
-                opt.setName('channel')
-                .setDescription('The channel you want to set the slowmode in')
-                .addChannelTypes(ChannelType.GuildText)
-            )
+                .setDescription('Set slowmode in a channel!')
+                .addStringOption((opt) =>
+                    opt.setName('duration')
+                        .setDescription('The duration of the slowmode (3s, 3m, 3h)')
+                        .setRequired(true)
+                )
+                .addChannelOption((opt) =>
+                    opt.setName('channel')
+                        .setDescription('The channel you want to set the slowmode in')
+                        .addChannelTypes(ChannelType.GuildText)
+                )
         ),
 
     /**
@@ -139,7 +139,7 @@ module.exports = {
                 })
             }
                 break;
-            
+
             case 'slowmode': {
                 const duration = interaction.options.getString('duration');
                 const channel = interaction.options.getChannel('channel') || interaction.channel;
@@ -149,35 +149,28 @@ module.exports = {
                 const msduration = ms(duration);
                 const ch = interaction.guild.channels.cache.get(id);
 
-                if(!ch) return Reply(interaction, 'Red', '\`❗️\`', 'That channel is not in this guild.', true);
+                if (!ch) return Reply(interaction, 'Red', '\`❗️\`', 'That channel is not in this guild.', true);
 
-                if(msduration > 21600000 || duration < 0) return Reply(interaction, 'Red', `\`❗️\``, `The slowmode cannot be negative or over 6 hours.`, true);
+                if (msduration > 21600000 || duration < 0) return Reply(interaction, 'Red', `\`❗️\``, `The slowmode cannot be negative or over 6 hours.`, true);
+                if (msduration > 0) {
+                    await ch.setRateLimitPerUser(msduration / 1000);
 
-                try {
-                    if(duration > 0) {
-                        await ch.setRateLimitPerUser(msduration / 1000);
+                    Reply(interaction, 'Green', `\`✅\``, `Successfully set slowmode in ${ch} to ${duration}`, true);
 
-                        Reply(interaction, 'Green', `\`✅\``, `Successfully set slowmode in ${ch} to ${duration}`, true);
+                    return ch.send({
+                        content: `The slowmode in this channel has been changed to ${duration}.`
+                    });
+                } else {
+                    await ch.setRateLimitPerUser(null);
 
-                        return ch.send({
-                            content: `The slowmode in this channel has been changed to ${duration}.`
-                        });
-                    } else {
-                        await ch.setRateLimitPerUser(null);
+                    Reply(interaction, 'Green', `\`✅\``, `Successfully disabled slowmode in ${ch}`, true);
 
-                        Reply(interaction, 'Green', `\`✅\``, `Successfully disabled slowmode in ${ch}`, true);
-
-                        return ch.send({
-                            content: `Slowmode has been disabled in this channel.`
-                        });
-                    }
-                } catch {
-                    return Reply(interaction, 'Red', `\`❗️\``,
-                    `Something went wrong whilst executing this command.\nPlease contact the bot owner, as a crash may have occured.`,
-                    true);
+                    return ch.send({
+                        content: `Slowmode has been disabled in this channel.`
+                    });
                 }
             }
-            break;
+                break;
         }
     }
 }
