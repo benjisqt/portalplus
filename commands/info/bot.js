@@ -62,15 +62,15 @@ module.exports = {
             })
             .setTimestamp()
             .addFields({
-                name: 'Server Numbers',
-                value: `${client.guilds.cache.size}`,
+                name: 'Servers Joined',
+                value: `${client.guilds.cache.size} servers`,
                 inline: true
             }, {
-                name: 'Server Members',
-                value: `${serverCount}`,
+                name: 'Platform',
+                value: `${os.platform}`,
                 inline: true
             }, {
-                name: 'Latency',
+                name: 'Discord Latency',
                 value: `${ping}`,
                 inline: true
             }, {
@@ -79,7 +79,7 @@ module.exports = {
                 inline: true
             }, {
                 name: 'CPU',
-                value: `${os.cpus().map(i => `${i.model}`)[0]}`,
+                value: `${os.cpus().map(i => `${i.model} - ${i.speed}GHz`)[0]}`,
                 inline: true
             }, {
                 name: 'discord.js version',
