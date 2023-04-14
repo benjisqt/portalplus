@@ -7,6 +7,7 @@ const {
     Client,
     EmbedBuilder
 } = require('discord.js');
+const os = require('os');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -74,7 +75,19 @@ module.exports = {
                 inline: true
             }, {
                 name: 'Uptime',
-                value: `\`\`\`${uptime}\`\`\``
+                value: `\`\`\`${uptime}\`\`\``,
+                inline: true
+            }, {
+                name: 'Registered application commands',
+                value: `${client.commands.size} commands`,
+                inline: true
+            }, {
+                name: 'CPU',
+                value: `${os.cpus().map(i => `${i.model}`)[0]}`,
+                inline: true
+            }, {
+                name: 'discord.js version',
+                value: `${require('../../package.json').dependencies['discord.js'].replace('^', '')}`
             })
 
         return interaction.reply({
