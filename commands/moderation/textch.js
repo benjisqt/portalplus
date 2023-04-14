@@ -147,7 +147,7 @@ module.exports = {
                 const id = channel.id;
 
                 const msduration = ms(duration);
-                const ch = interaction.guild.channels.cache.get(channel);
+                const ch = interaction.guild.channels.cache.get(id);
 
                 if(!ch) return Reply(interaction, 'Red', '\`❗️\`', 'That channel is not in this guild.', true);
 
