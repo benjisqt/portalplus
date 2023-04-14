@@ -63,7 +63,7 @@ module.exports = {
         const result = results[Math.floor(Math.random() * results.length)];
 
         return interaction.editReply({
-            content: `\`:8ball\` Result: ${result}\nQuestion: **${query}**`
+            content: `\`:8ball:\` Result: ${result}\nQuestion: **${query}**`
         });
     }
 }
