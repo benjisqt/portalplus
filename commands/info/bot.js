@@ -74,11 +74,7 @@ module.exports = {
                 value: `${ping}`,
                 inline: true
             }, {
-                name: 'Uptime',
-                value: `\`\`\`${uptime}\`\`\``,
-                inline: true
-            }, {
-                name: 'Registered application commands',
+                name: 'Registered Commands',
                 value: `${client.commands.size} commands`,
                 inline: true
             }, {
@@ -87,7 +83,11 @@ module.exports = {
                 inline: true
             }, {
                 name: 'discord.js version',
-                value: `${require('../../package.json').dependencies['discord.js'].replace('^', '')}`
+                value: `${require('../../package.json').dependencies['discord.js'].replace('^', '')}`,
+                inline: true
+            }, {
+                name: 'Uptime',
+                value: `\`\`\`${uptime}\`\`\``,
             })
 
         return interaction.reply({
