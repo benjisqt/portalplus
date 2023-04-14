@@ -142,7 +142,9 @@ module.exports = {
             
             case 'slowmode': {
                 const duration = interaction.options.getString('duration');
-                const channel = interaction.options.getChannel('channel').id || interaction.channel.id;
+                const channel = interaction.options.getChannel('channel') || interaction.channel;
+
+                const id = channel.id;
 
                 const msduration = ms(duration);
                 const ch = interaction.guild.channels.cache.get(channel);
