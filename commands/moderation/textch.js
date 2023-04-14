@@ -155,7 +155,7 @@ module.exports = {
 
                 try {
                     if(duration > 0) {
-                        await ch.setRateLimitPerUser(duration / 1000);
+                        await ch.setRateLimitPerUser(msduration / 1000);
 
                         Reply(interaction, 'Green', `\`✅\``, `Successfully set slowmode in ${ch} to ${duration}`, true);
 
