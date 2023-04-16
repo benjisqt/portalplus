@@ -1,9 +1,10 @@
-const { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder, PermissionFlagsBits } = require('discord.js');
 const warnings = require('../../models/warnings');
 
 module.exports = {
     category: 'moderation',
     data: new SlashCommandBuilder()
+        .setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers)
         .setName('warn')
         .setDescription('Warn a user!')
         .addSubcommand((sub) =>

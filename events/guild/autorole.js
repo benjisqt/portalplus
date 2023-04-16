@@ -2,7 +2,7 @@ const { GuildMember, Client } = require('discord.js');
 const autorole = require('../../models/autorole');
 
 module.exports = {
-    name: 'autorole',
+    name: 'guildMemberAdd',
 
     /**
      * 
