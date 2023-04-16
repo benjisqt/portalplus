@@ -29,7 +29,7 @@ module.exports = {
                 )
         )
         .addSubcommand((sub) =>
-            sub.setName('all')
+            sub.setName('list')
                 .setDescription('Get all warns for a user')
                 .addUserOption((opt) =>
                     opt.setName('user')
@@ -94,7 +94,7 @@ module.exports = {
             }
                 break;
 
-            case 'all': {
+            case 'list': {
                 const user = interaction.options.getUser('user');
 
                 const data = await warnings.find({ Guild: interaction.guild.id, User: user.id });
@@ -102,11 +102,11 @@ module.exports = {
                 if(data.length <= 0) return interaction.reply({ content: `\`❗️\` There is no warnings registered for this person.`, ephemeral: true });
                 
                 const all = data.map((d) => {
-                    return {
-                        ID: `${d._id}`,
-                        Reason: `${d.Reason}`,
-                        Moderator: `<@${d.Moderator}>`
-                    }
+                    return [
+                        `ID: ${d._id}`,
+                        `Reason: ${d.Reason}`,
+                        `Moderator: <@${d.Moderator}>`
+                    ].join('\n\n')
                 });
 
                 return interaction.reply({
@@ -114,7 +114,7 @@ module.exports = {
                         new EmbedBuilder()
                         .setColor('Blurple')
                         .setTitle(`All Warnings For ${user.tag}`)
-                        .setDescription(all.join('\n\n'))
+                        .setDescription(all)
                     ], ephemeral: true
                 });
             }
