@@ -73,9 +73,40 @@ module.exports = {
                     Moderator: interaction.user.id,
                 }).save();
 
-                return interaction.reply({
+                const msg = await interaction.reply({
                     content: `\`✅\` Issued warning to ${user}.`,
+                    ephemeral: true
                 });
+
+                if(!interaction.channel.permissionsFor(interaction.guild.members.me).has('SendMessages')) return msg.edit({ content: `\`✅\` Issued warning to ${user}.\n\`❗️\` Warning: I do not have permissions to speak in this channel.` });
+
+                return interaction.channel.send({
+                    embeds: [
+                        new EmbedBuilder()
+                        .setTitle(`Warning Issued`)
+                        .setDescription(`A warning has been issued to <@${user.id}>.`)
+                        .addFields(
+                            {
+                                name: 'User',
+                                value: `<@${user.id}>`,
+                                inline: true
+                            },
+                            {
+                                name: 'Moderator',
+                                value: `<@${interaction.user.id}>`,
+                                inline: true
+                            },
+                            {
+                                name: 'Reason',
+                                value: `${reason}`,
+                                inline: true
+                            }
+                        )
+                        .setColor('Gold')
+                        .setFooter({ text: `Portal+ Warning System` })
+                    ],
+                    content: `<@${user.id}>`
+                })
             }
                 break;
 
@@ -88,8 +119,8 @@ module.exports = {
                     const data = await warnings.findById(warnid);
                     if (!data) return interaction.reply({ content: `\`❗️\` There is no warning with that ID.`, ephemeral: true });
 
-                    warnings.findByIdAndDelete(warnid);
-                    return interaction.reply({ content: `\`✅\` Deleted warning with ID **${warnid}**` });
+                    data.deleteOne({ _id: warnid });
+                    return interaction.reply({ content: `\`✅\` Deleted warning with ID **${warnid}**`, ephemeral: true });
                 }
             }
                 break;
@@ -106,15 +137,15 @@ module.exports = {
                         `ID: ${d._id}`,
                         `Reason: ${d.Reason}`,
                         `Moderator: <@${d.Moderator}>`
-                    ].join('\n\n')
-                });
+                    ].join('\n')
+                }).join('\n\n');
 
                 return interaction.reply({
                     embeds: [
                         new EmbedBuilder()
                         .setColor('Blurple')
                         .setTitle(`All Warnings For ${user.tag}`)
-                        .setDescription(all)
+                        .setDescription(all.toString())
                     ], ephemeral: true
                 });
             }
@@ -131,7 +162,9 @@ module.exports = {
 
                 const length = data.length;
 
-                warnings.deleteMany({ Guild: interaction.guildId, User: user.id }, { new: true });
+                data.forEach((d) => {
+                    d.deleteOne({ Guild: d.Guild, User: d.User });
+                });
 
                 return interaction.reply({
                     embeds: [
@@ -140,7 +173,7 @@ module.exports = {
                         .setDescription(`Successfully deleted ${length} warnings from <@${user.id}>`)
                         .setColor('Gold')
                         .setFooter({ text: `Portal+ Warning System` })
-                    ]
+                    ], ephemeral: true
                 })
             }
                 break;
