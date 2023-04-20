@@ -12,6 +12,8 @@ module.exports = {
      */
 
     async execute(message, client) {
+        if(message.author.bot) return;
+        if(message.guild === null) return;
         const data = await counting.findOne({ Guild: message.guild.id });
         if(!data) return;
 
