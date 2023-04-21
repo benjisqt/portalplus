@@ -2,6 +2,7 @@ const { SlashCommandBuilder, ChatInputCommandInteraction, PermissionFlagsBits, E
 const voiceSchema = require('../../models/jointocreate');
 
 module.exports = {
+    Category: 'Config',
     data: new SlashCommandBuilder()
     .setName('join-to-create')
     .setDescription('Setup and disable Join To Create voice channel!')

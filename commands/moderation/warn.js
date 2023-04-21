@@ -2,7 +2,7 @@ const { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder, Permissi
 const warnings = require('../../models/warnings');
 
 module.exports = {
-    category: 'moderation',
+    category: 'Moderation',
     data: new SlashCommandBuilder()
         .setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers)
         .setName('warn')
