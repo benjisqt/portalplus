@@ -34,7 +34,7 @@ module.exports = {
                         return {
                             label: cat,
                             value: cat,
-                            emoji: emojis[cat] || '❓'
+                            emoji: emojis[cat] || '⚫️'
                         }
                     })
                 )
