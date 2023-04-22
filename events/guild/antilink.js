@@ -11,15 +11,7 @@ module.exports = {
      */
 
     async execute(message, client) {
-        const blocked = [
-            'https',
-            'http',
-            'www',
-            '.gg',
-            '.com',
-        ];
-
-        if(blocked.includes(message.content)) {
+        if(message.content.startsWith('https') || message.content.startsWith('http') || message.content.startsWith('www') || message.content.startsWith('discord.gg') || message.content.includes('https') || message.content.includes('http') || message.content.includes('www') || message.content.includes('discord.gg')) {
             const data = await antilink.findOne({ Guild: message.guildId });
             if(!data) return;
 
