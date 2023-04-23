@@ -1,6 +1,7 @@
 const {
     SlashCommandBuilder,
-    ChatInputCommandInteraction
+    ChatInputCommandInteraction,
+    PermissionFlagsBits
 } = require('discord.js');
 const antijoin = require('../../models/antijoin');
 const { Reply } = require('../../util/replies');
@@ -9,6 +10,7 @@ module.exports = {
     category: 'Config',
     data: new SlashCommandBuilder()
         .setName('antijoin')
+        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .setDescription('Stop all new people from rejoining!')
         .addSubcommand((sub) =>
             sub.setName('enable')

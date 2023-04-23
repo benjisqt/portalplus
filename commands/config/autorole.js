@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, ChatInputCommandInteraction } = require('discord.js');
+const { SlashCommandBuilder, ChatInputCommandInteraction, PermissionFlagsBits } = require('discord.js');
 const autorole = require('../../models/autorole');
 const { Reply } = require('../../util/replies');
 
@@ -7,6 +7,7 @@ module.exports = {
     data: new SlashCommandBuilder()
     .setName('autorole')
     .setDescription('Autorole config')
+    .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
     .addSubcommand((sub) =>
         sub.setName('enable')
         .setDescription('Enable the autorole system!')

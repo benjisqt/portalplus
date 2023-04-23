@@ -5,6 +5,7 @@ module.exports = {
     Category: 'Config',
     data: new SlashCommandBuilder()
     .setName('join-to-create')
+    .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
     .setDescription('Setup and disable Join To Create voice channel!')
     .addSubcommand((sub) =>
         sub.setName('setup')

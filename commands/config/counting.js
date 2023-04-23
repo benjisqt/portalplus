@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, ChatInputCommandInteraction, ChannelType } = require('discord.js');
+const { SlashCommandBuilder, ChatInputCommandInteraction, ChannelType, PermissionFlagsBits } = require('discord.js');
 const counting = require('../../models/counting');
 const { Reply } = require('../../util/replies');
 
@@ -6,6 +6,7 @@ module.exports = {
     category: 'Config',
     data: new SlashCommandBuilder()
     .setName('counting')
+    .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
     .setDescription('Enable or disable the counting system!')
     .addSubcommand((sub) =>
         sub.setName('enable')

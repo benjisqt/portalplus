@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder, ChannelType } = require('discord.js');
+const { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder, ChannelType, PermissionFlagsBits } = require('discord.js');
 const suggestion = require('../../models/suggestion');
 
 module.exports = {
@@ -6,6 +6,7 @@ module.exports = {
     data: new SlashCommandBuilder()
     .setName('suggestion')
     .setDescription('Suggestion system')
+    .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
     .addSubcommand((sub) =>
         sub.setName('enable')
         .setDescription('Enable the suggestion system')

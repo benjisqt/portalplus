@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, ChatInputCommandInteraction, ChannelType } = require('discord.js');
+const { SlashCommandBuilder, ChatInputCommandInteraction, ChannelType, PermissionFlagsBits } = require('discord.js');
 const boost = require('../../models/boost');
 
 module.exports = {
@@ -6,6 +6,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('boostdetection')
         .setDescription('Nitro Boost Detection!')
+        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .addSubcommand((sub) =>
             sub.setName('enable')
                 .setDescription('Enable the boost detection system')
