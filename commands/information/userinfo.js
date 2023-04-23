@@ -32,7 +32,7 @@ module.exports = {
         let roles;
 
         const memberRoles = member.roles.cache.filter((roles) => roles.id !== interaction.guild.id).map((role) => role.toString());
-        if(!memberRoles) roles = 'No Roles.';
+        if(memberRoles.length <= 0) roles = 'No Roles.';
         else roles = memberRoles;
 
         if(silent === true) {
