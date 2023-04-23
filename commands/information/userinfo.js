@@ -58,7 +58,7 @@ module.exports = {
                         { name: 'Originated', value: `<t:${Math.round(user.createdTimestamp / 1000)}:f> <t:${parseInt(user.createdTimestamp / 1000)}:R>` },
                         { name: 'Joined', value: `<t:${Math.round(member.joinedTimestamp / 1000)}:f> <t:${Math.round(member.joinedTimestamp / 1000)}:R>` },
                     )
-                    .setDescription(`${memberRoles}`)
+                    .setDescription(`${roles}`)
                     .setImage('https://cdn.discordapp.com/attachments/895632161057669180/930131558168412230/void_red_bar.PNG')
                     .setThumbnail(user.displayAvatarURL({ dynamic: true, size: 1024 }))
                 ]
