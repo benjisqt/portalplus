@@ -30,7 +30,7 @@ module.exports = {
         if(!member) return interaction.reply({ content: `That user is not in this guild.`, ephemeral: true });
         const silent = interaction.options.getBoolean('silent') || false;
 
-        const memberRoles = member.roles.cache.filter((roles) => roles.id !== interaction.guild.id).map((role) => role.toString());
+        const memberRoles = member.roles.cache.filter((roles) => roles.id !== interaction.guild.id).map((role) => role.id.toString());
 
         if(silent === true) {
             return interaction.reply({
