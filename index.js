@@ -1,4 +1,4 @@
-const { Collection, Client, GatewayIntentBits, Partials } = require('discord.js');
+const { Collection, Client, GatewayIntentBits, Partials, EmbedBuilder } = require('discord.js');
 const chalk = require('chalk');
 console.clear();
 
@@ -17,6 +17,13 @@ const process = require('node:process');
 
 process.on('unhandledRejection', (reason, promise) => {
     console.log('Unhandled Rejection At:', promise, 'reason:', reason);
+    const ch = client.channels.cache.get('1100148844920057967');
+    ch.send({ embeds: [
+        new EmbedBuilder()
+        .setTitle(`Portal+ has experienced an error!`)
+        .setColor('Red')
+        .setDescription(`The following is the unhandled rejection report:\n\n${promise}\n\nReason: ${reason}`);
+    ] })
 })
 
 client.login(client.config.token).then(() => {
