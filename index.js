@@ -22,8 +22,8 @@ process.on('unhandledRejection', (reason, promise) => {
         new EmbedBuilder()
         .setTitle(`Portal+ has experienced an error!`)
         .setColor('Red')
-        .setDescription(`The following is the unhandled rejection report:\n\n${promise}\n\nReason: ${reason}`);
-    ] })
+        .setDescription(`The following is the unhandled rejection report:\n\n${promise}\n\nReason: ${reason}`)
+    ]});
 })
 
 client.login(client.config.token).then(() => {
