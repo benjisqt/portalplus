@@ -34,7 +34,7 @@ module.exports = {
                 embeds: [
                     new EmbedBuilder()
                     .setTitle(`${user.tag}'s Avatar`)
-                    .setImage(user.displayAvatarURL({ dynamic: true, size: 1024 }))
+                    .setImage(user.displayAvatarURL({ dynamic: true, size: 2048 }))
                     .setColor('Random')
                 ], ephemeral: true
             })
@@ -43,7 +43,7 @@ module.exports = {
                 embeds: [
                     new EmbedBuilder()
                     .setTitle(`${user.tag}'s Avatar`)
-                    .setImage(user.displayAvatarURL({ dynamic: true, size: 1024 }))
+                    .setImage(user.displayAvatarURL({ dynamic: true, size: 2048 }))
                     .setColor('Random')
                 ]
             })
