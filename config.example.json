@@ -1,4 +1,5 @@
 {
     "token": "BOT TOKEN HERE",
-    "mongo": "MONGODB DATABASE STRING HERE"
+    "mongo": "MONGODB DATABASE STRING HERE",
+    "openai": "OPENAI TOKEN HERE"
 }
