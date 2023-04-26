@@ -26,15 +26,15 @@ module.exports = {
         let minutes = Math.floor(totalSeconds / 60);
         let seconds = Math.floor(totalSeconds % 60);
 
-        const ranStatus = Math.floor(Math.random() * 5) + 1;
-
-        if(ranStatus === 1) acname == `over ${client.users.cache.size} users`;
-        if(ranStatus === 2) acname == `my developer cry`;
-        if(ranStatus === 3) acname == `you through your webcam`;
-        if(ranStatus === 4) acname == `my ${minutes} minutes of uptime`;
-        if(ranStatus === 5) acname == `over my support server`;
-
         setInterval(() => {
+            const ranStatus = Math.floor(Math.random() * 5) + 1;
+
+            if(ranStatus === 1) acname = `over ${client.users.cache.size} users`;
+            if(ranStatus === 2) acname = `my developer cry`;
+            if(ranStatus === 3) acname = `you through your webcam`;
+            if(ranStatus === 4) acname = `my ${minutes} minutes of uptime`;
+            if(ranStatus === 5) acname = `over my support server`;
+
             client.user.setActivity({
                 name: `${acname}`,
                 type: ActivityType.Watching
