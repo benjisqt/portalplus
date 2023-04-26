@@ -15,7 +15,7 @@ module.exports = {
         if(!data) return;
 
         data.forEach(date => {
-            if(Date.now() > date.Expires) {
+            if(Date.now() >= date.Expires) {
                 const guilds = client.guilds.cache.get(date.Guild);
                 const validch = guilds.channels.cache.filter(ch => ch.permissionsFor(guilds.members.me).has('SendMessages') && ch.type === ChannelType.GuildText).first();
                 if(!validch) return;
