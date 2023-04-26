@@ -32,7 +32,7 @@ module.exports = {
             if(ranStatus === 1) acname = `over ${client.users.cache.size} users`;
             if(ranStatus === 2) acname = `my developer cry`;
             if(ranStatus === 3) acname = `you through your webcam`;
-            if(ranStatus === 4) acname = `my ${minutes} minutes of uptime`;
+            if(ranStatus === 4) acname = `my ${hours} hrs, ${minutes} mins and ${seconds} secs of uptime`;
             if(ranStatus === 5) acname = `over my support server`;
 
             client.user.setActivity({
