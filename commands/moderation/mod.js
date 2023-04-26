@@ -173,10 +173,6 @@ module.exports = {
                             opt.setName('reason')
                                 .setDescription('The reason for clearing messages')
                         )
-                        .addBooleanOption((opt) =>
-                            opt.setName('silent')
-                                .setDescription('Whether command feedback should only be visible to you.')
-                        )
                 )
         ),
 
@@ -201,6 +197,7 @@ module.exports = {
                 const user = options.getMember('user');
                 const reason = options.getString('reason') || "No Reason.";
                 const silent = options.getBoolean('silent') || false;
+                const emoji = client.emojis.cache.get('1099831412451979284');
 
                 switch (sub) {
                     case 'ban': {
@@ -323,7 +320,7 @@ module.exports = {
                             return replies.Reply(interaction, 'Green', '✅', `${client.users.cache.get(id).tag} has been unbanned!`, false);
                         }
                     }
-                    break;
+                        break;
 
                     case 'unbanall': {
                         const { options, guild, user } = interaction;
@@ -335,11 +332,11 @@ module.exports = {
 
                         await guild.fetchOwner();
 
-                        if(interaction.user.id != guild.ownerId) return await replies.Reply(interaction, 'Red', '❗️', 'You have to be the server owner in order to execute this command!', true);
+                        if (interaction.user.id != guild.ownerId) return await replies.Reply(interaction, 'Red', '❗️', 'You have to be the server owner in order to execute this command!', true);
 
-                        if(users.size <= 0) return replies.Reply(interaction, 'Red', '❗️', 'There are no users banned in this guild.', true);
+                        if (users.size <= 0) return replies.Reply(interaction, 'Red', '❗️', 'There are no users banned in this guild.', true);
 
-                        if(silent === true) {
+                        if (silent === true) {
                             await interaction.reply({ content: `${emoji} Unbanning everyone in the server. This may take a while, depending on the amount of bans you have.`, ephemeral: true });
                         } else {
                             await interaction.reply({ content: `${emoji} Unbanning everyone in the server. This may take a while, depending on the amount of bans you have.`, ephemeral: false });
@@ -347,19 +344,19 @@ module.exports = {
 
                         for (const id of ids) {
                             await guild.members.unban(id)
-                            .catch(err => {
-                                return interaction.editReply({ content: `${err}` });
-                            });
+                                .catch(err => {
+                                    return interaction.editReply({ content: `${err}` });
+                                });
                         }
 
                         const embed = new EmbedBuilder()
-                        .setColor('Green')
-                        .setDescription(`:white_check_mark: ${ids.length} members have been **unbanned** from the server.`)
-                        .setFooter({ text: `Portal+ : /mod unbanall` });
+                            .setColor('Green')
+                            .setDescription(`:white_check_mark: ${ids.length} members have been **unbanned** from the server.`)
+                            .setFooter({ text: `Portal+ : /mod unbanall` });
 
                         return interaction.editReply({ content: ``, embeds: [embed] });
                     }
-                    break;
+                        break;
                 }
             }
                 break;
@@ -372,13 +369,19 @@ module.exports = {
                 switch (sub) {
                     case 'clear': {
                         const ch = interaction.channel;
+
                         ch.clone().then(async newch => {
-                            if (silent === false) {
-                                const msg = await newch.send({ content: `Channel has been cleared of all messages!` });
-                                setTimeout(() => {
-                                    msg.delete();
-                                }, 3000)
-                            }
+                            const msg = await newch.send({
+                                embeds: [
+                                    new EmbedBuilder()
+                                        .setTitle(`Successfully Cleared Channel`)
+                                        .setDescription(`Cleared ${newch.name} of all \`${ch.messages.cache.size}\` messages.`)
+                                        .setColor('Gold')
+                                ]
+                            });
+                            setTimeout(() => {
+                                msg.delete();
+                            }, 3000)
                             ch.delete();
                         })
                     }
@@ -391,9 +394,27 @@ module.exports = {
 
                         await interaction.channel.bulkDelete(amount);
                         if (silent === true) {
-                            return replies.Reply(interaction, 'Green', '✅', `Successfully removed ${amount} messages!`, true);
+                            return interaction.reply({
+                                embeds: [
+                                    new EmbedBuilder()
+                                    .setTitle(`${emoji} Successfully Cleared Messages`)
+                                    .setDescription(`Removed ${amount} messages from <#${interaction.channel.id}>`)
+                                    .setColor('Gold')
+                                ], ephemeral: true
+                            })
                         } else {
-                            return replies.Reply(interaction, 'Green', '✅', `Successfully removed ${amount} messages!`, false);
+                            const msg = await interaction.reply({
+                                embeds: [
+                                    new EmbedBuilder()
+                                    .setTitle(`${emoji} Successfully Cleared Messages`)
+                                    .setDescription(`Removed ${amount} messages from <#${interaction.channel.id}>`)
+                                    .setColor('Gold')
+                                ]
+                            });
+
+                            setTimeout(() => {
+                                msg.delete();
+                            }, 3000);
                         }
                     }
                         break;
