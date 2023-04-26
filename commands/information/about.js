@@ -24,8 +24,8 @@ module.exports = {
 
     async execute(interaction, client) {
         commit();
-        const commitcount = commit('benjisqt/portalplus');
-        commitcount / 10;
+        const count = commit('benjisqt/portalplus');
+        const commitcount = count / 10;
         const name = interaction.guild.members.me.user.username;
         const icon = `${interaction.guild.members.me.displayAvatarURL()}`;
         let serverCount = await client.guilds.cache.reduce((a, b) => a + b.memberCount, 0);
