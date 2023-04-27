@@ -1,6 +1,7 @@
 const chalk = require('chalk');
 const { Client, ActivityType } = require('discord.js');
 const presence = require('../../util/presence.json');
+const commit = require('git-commit-count');
 
 module.exports = {
     name: 'ready',
@@ -10,6 +11,9 @@ module.exports = {
      */
 
     async execute(client) {
+        commit();
+        const count = commit('benjisqt/portalplus');
+        const commitcount = count / 10;
 
         client.user.setActivity({
             name: `${client.guilds.cache.size} guilds`,
@@ -32,7 +36,7 @@ module.exports = {
             if(ranStatus === 1) acname = `over ${client.users.cache.size} users`;
             if(ranStatus === 2) acname = `my developer cry`;
             if(ranStatus === 3) acname = `you through your webcam`;
-            if(ranStatus === 4) acname = `my ${hours} hrs, ${minutes} mins and ${seconds} secs of uptime`;
+            if(ranStatus === 4) acname = `version 1.${commitcount}`;
             if(ranStatus === 5) acname = `over my support server`;
 
             client.user.setActivity({
