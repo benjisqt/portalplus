@@ -31,12 +31,14 @@ module.exports = {
 
         const name = member.nickname || member.user.username;
 
-        await interaction.channel.createWebhook({
+        interaction.channel.createWebhook({
             name: name,
             avatar: member.displayAvatarURL({ dynamic: true })
         }).then(webhook => {
             webhook.send({ content: message });
-            webhook.delete();
+            setTimeout(() => {
+                webhook.delete();
+            }, 2000);
         });
 
         await interaction.reply({ content: `Member has been impersonated!`, ephemeral: true });

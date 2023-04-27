@@ -12,7 +12,7 @@ module.exports = {
      */
 
     async execute(interaction) {
-        const members = interaction.guild.members.cache.filter((m) => m.presence.status === 'invisible');
+        const members = interaction.guild.members.cache.filter((m) => m.presence?.status === 'invisible');
 
         if(members.size <= 0) return interaction.reply({ content: `No invis people in this server!`, ephemeral: true });
 

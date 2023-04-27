@@ -3,7 +3,7 @@ const {
     ChatInputCommandInteraction,
     EmbedBuilder,
     PermissionFlagsBits,
-    Client
+    Client,
 } = require('discord.js');
 const replies = require('../../util/replies');
 const ms = require('ms');
