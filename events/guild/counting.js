@@ -1,6 +1,5 @@
 const { Message, Client } = require('discord.js');
 const counting = require('../../models/counting');
-const { Reply } = require('../../util/replies');
 
 module.exports = {
     name: 'messageCreate',
@@ -34,7 +33,11 @@ module.exports = {
             data.save();
             const msg = await message.reply({ content: `${message.author} RUINED it at ${message.content}, restarting from 0.` });
             setTimeout(async () => {
-                await message.channel.bulkDelete(100);
+                const newch = await message.channel.clone();
+                message.channel.delete();
+
+                data.Channel = newch.id;
+                data.save();
             }, 3000);
         }
     }
