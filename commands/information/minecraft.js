@@ -141,6 +141,13 @@ module.exports = {
                 if(data.ping === false) return Reply(interaction, 'Red', '🚫', `That server was not found. Please ensure you selected the right address and version.`, true);
 
                 if(type === 'bedrock') {
+                    if(!address.includes(':')) return interaction.reply({ embeds: [
+                        new EmbedBuilder()
+                        .setTitle(`> Include the port!`)
+                        .setDescription(`With Bedrock Edition servers, you need to include the port. An example of correct syntax is shown below.\nIf you don't know the port of the server, 🤷`)
+                        .setImage('https://cdn.discordapp.com/attachments/1057055934486155315/1102402033249701999/Screenshot_2023-05-01_at_02.11.59.png')
+                        .setColor('Orange')
+                    ] })
                     if(silent === true) {
                         return interaction.reply({
                             embeds: [
