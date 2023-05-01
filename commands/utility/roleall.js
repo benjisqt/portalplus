@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder, PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
+    category: 'Utility',
     data: new SlashCommandBuilder()
         .setName('roleall')
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)

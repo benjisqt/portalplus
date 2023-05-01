@@ -9,7 +9,8 @@
                 "Information": "❓",
                 "Moderation": "🛡️",
                 "Owner": "❌",
-                "VIP": "🌟"
+                "VIP": "🌟",
+                "Utility": "🔨"
             },
             "clientemojis": {
                 "Success": "1099831412451979284"
