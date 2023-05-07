@@ -46,6 +46,7 @@
     "openweather-apis": "^4.4.2",
     "reddit-fetch": "^1.5.1",
     "relevant-urban": "^2.0.0",
+    "simple-git": "^3.18.0",
     "somerandomapi.js": "^1.5.3",
     "song-lyrics-api": "^1.1.0",
     "weather-js": "^2.0.0"
