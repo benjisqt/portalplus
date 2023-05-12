@@ -2,6 +2,7 @@ const { SlashCommandBuilder, ChatInputCommandInteraction, Client, EmbedBuilder }
 const player = require('../../index');
 
 module.exports = {
+    category: 'Music',
     data: new SlashCommandBuilder()
     .setName('previous')
     .setDescription('Go to the previous song!'),

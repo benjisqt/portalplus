@@ -2,6 +2,7 @@ const { SlashCommandBuilder, ChatInputCommandInteraction, PermissionFlagsBits, C
 const whitelist = require('../../models/whitelist');
 
 module.exports = {
+    category: 'Moderation',
     data: new SlashCommandBuilder()
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
     .setName('whitelist')

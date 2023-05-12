@@ -1,21 +1,27 @@
-const { SlashCommandBuilder, ChatInputCommandInteraction, Client, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, ChatInputCommandInteraction } = require('discord.js');
 const player = require('../../index');
 
 module.exports = {
     category: 'Music',
     data: new SlashCommandBuilder()
-    .setName('resume')
-    .setDescription('Resume a song!'),
+    .setName('forward')
+    .setDescription('Go a certain amount of time forwards in a song!')
+    .addNumberOption((opt) =>
+        opt.setName('seconds')
+        .setDescription('The amount of seconds you want to jump forward!')
+        .setRequired(true)
+        .setMinValue(1)
+    ),
 
     /**
      * 
      * @param {ChatInputCommandInteraction} interaction
      */
 
-    async execute(interaction, client) {
+    async execute(interaction) {
         const { options, member, guild, channel } = interaction;
 
-        const query = options.getString('query');
+        const option = options.getNumber('seconds');
         const vc = member.voice.channel;
 
         if(!vc) return interaction.reply({
@@ -36,7 +42,12 @@ module.exports = {
             });
         }
 
-        const song = await player.resume(guild);
-        return interaction.reply({ content: `\`▶️\` Song resumed at ${song.formattedCurrentTime}.` });
+        if(isNaN(option)) return interaction.reply({ content: `\`❌\` That is not a valid number.` });
+        
+        queue.seek((queue.currentTime + option));
+
+        return interaction.reply({
+            content: `\`⏩\` Forwarded ${option} seconds in the song!`
+        });
     }
 }
