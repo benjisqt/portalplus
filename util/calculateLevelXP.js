@@ -1,1 +1,1 @@
-module.exports = (level) => 100 * level || 1;
+module.exports = (level) => 115 * level || 1;
