@@ -20,14 +20,40 @@ module.exports = {
                         .setTitle(`Hey! I'm Portal+`)
                         .setDescription(`Friendly reminder, my prefix is /, I only support slash commands! :)\nHave a good day!`)
                         .setFooter({ text: `portal+ being friendly?!` })
-                        .setColor('Gold')
+                        .setColor('Green')
                         .setThumbnail(client.user.displayAvatarURL({ size: 1024 }))
                     ]
                 });
 
                 setTimeout(() => {
-                    msg.delete();
-                }, 3000);
+                    msg.edit({
+                        embeds: [
+                            new EmbedBuilder()
+                            .setTitle(`Hey! I'm Portal+`)
+                            .setDescription(`Friendly reminder, my prefix is /, I only support slash commands! :)\nHave a good day!`)
+                            .setFooter({ text: `portal+ being friendly?!` })
+                            .setColor('Orange')
+                            .setThumbnail(client.user.displayAvatarURL({ size: 1024 }))
+                        ]
+                    });
+
+                    setTimeout(() => {
+                        msg.edit({
+                            embeds: [
+                                new EmbedBuilder()
+                                .setTitle(`Hey! I'm Portal+`)
+                                .setDescription(`Friendly reminder, my prefix is /, I only support slash commands! :)\nHave a good day!`)
+                                .setFooter({ text: `portal+ being friendly?!` })
+                                .setColor('Red')
+                                .setThumbnail(client.user.displayAvatarURL({ size: 1024 }))
+                            ]
+                        });
+
+                        setTimeout(() => {
+                            msg.delete();
+                        }, 1000);
+                    }, 1000)
+                }, 1000);
             } else return;
         } else return;
     }
