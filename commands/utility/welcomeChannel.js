@@ -67,7 +67,7 @@ module.exports = {
                     ]
                 });
 
-                if(channel.permissionsFor(interaction.guild.members.me).has('SendMessages')) return interaction.reply({
+                if(!channel.permissionsFor(interaction.guild.members.me).has('SendMessages')) return interaction.reply({
                     embeds: [ new EmbedBuilder() .setDescription(`🛑 | I do not have permissions to Send Messages in that channel.`) .setColor('Red') ]
                 });
 
@@ -121,6 +121,10 @@ module.exports = {
                         .setDescription(`🛑 | The welcome channel has not been setup.`)
                         .setColor('Red')
                     ]
+                });
+
+                if(!channel.permissionsFor(interaction.guild.members.me).has('SendMessages')) return interaction.reply({
+                    embeds: [ new EmbedBuilder() .setDescription(`🛑 | I do not have permissions to Send Messages in that channel.`) .setColor('Red') ]
                 });
 
                 interaction.reply({
