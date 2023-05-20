@@ -6,4 +6,5 @@ module.exports = model('xp', new Schema({
     XP: Number,
     Level: Number,
     XPMultiplier: Number,
+    TotalXP: Number,
 }))

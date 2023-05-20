@@ -51,6 +51,7 @@ module.exports = {
                 if(!data) return Reply(interaction, 'Red', '🛑', `That user does not have any XP.`, true);
 
                 data.XP + number;
+                data.TotalXP + number;
 
                 data.save();
 
@@ -65,6 +66,7 @@ module.exports = {
                 if(number > data.XP) return Reply(interaction, 'Red', '🛑', `The user does not have that much XP! They have ${data.XP}, you inputted ${number}.`, true);
 
                 data.XP - number;
+                data.TotalXP - number;
 
                 data.save();
 

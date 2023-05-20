@@ -26,6 +26,7 @@ module.exports = {
         const data = await xp.findOne(query);
         if(data) {
             data.XP += XPToGive;
+            data.TotalXP + XPToGive;
 
             if(data.XP > calculateLevelXP(data.Level)) {
                 data.XP = 0;
