@@ -31,7 +31,7 @@ module.exports = {
 
             if(data.XP > calculateLevelXP(data.Level)) {
                 data.Level += 1;
-                data.XP = 
+                data.XP = calculateLevelXP(data.Level) / 10
 
                 preventSpam.add(message.author.id);
 
