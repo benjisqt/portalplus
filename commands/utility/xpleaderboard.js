@@ -25,13 +25,13 @@ module.exports = {
 
         const sortedUsers = alldata.sort((a, b) => {
             if(b.Level === a.Level) {
-                return (b.TotalXP) - (a.TotalXP)
+                return (b.XP) - (a.XP)
             }
             return (b.Level) - (a.Level)
         }).slice(0, 10);
 
         leaderboardembed.setDescription(sortedUsers.map((user, index) => {
-            return `**\`[ ${index + 1} ]\`** : **<@${user.User}>** : \` Level ${user.Level}, ${user.TotalXP} XP \``
+            return `**\`[ ${index + 1} ]\`** : **<@${user.User}>** : \` Level ${user.Level}, ${user.XP} XP \``
         }).join('\n'));
 
         return interaction.reply({
