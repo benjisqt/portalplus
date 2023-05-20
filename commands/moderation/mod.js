@@ -279,14 +279,14 @@ module.exports = {
 
                         user.timeout(ms(duration), reason);
                         if (silent === true) {
-                            replies.Reply(interaction, 'Green', '✅', `Successfully timed out ${user} for ${duration}.`, true);
+                            replies.Reply(interaction, 'Green', '✅', `Successfully timed out ${user} for ${duration}.\nReason: ${reason}`, true);
                         } else {
-                            replies.Reply(interaction, 'Green', '✅', `Successfully timed out ${user} for ${duration}.`, false);
+                            replies.Reply(interaction, 'Green', '✅', `Successfully timed out ${user} for ${duration}.\nReason: ${reason}`, false);
                         }
 
                         setTimeout(() => {
                             return interaction.channel.send({
-                                content: `The timeout for ${user.user.tag} has ended.\nDuration: ${duration}`
+                                content: `The timeout for ${user.user.tag} has ended.\nDuration: ${duration}\nReason: ${reason}`
                             });
                         }, ms(duration))
                     }
