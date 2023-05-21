@@ -77,7 +77,7 @@ module.exports = {
                             .addFields(
                                 { name: 'Reward', value: `${id}` },
                                 { name: 'Duration', value: `3 Months` },
-                                { name: 'Code To Redeem', value: `${newcode}` }
+                                { name: 'Code To Redeem', value: `${newCode}` }
                             )
                             .setColor('Gold')
                         ], ephemeral: true
