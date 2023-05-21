@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, ChatInputCommandInteraction, PermissionFlagsBits } = require('discord.js');
+const { SlashCommandBuilder, ChatInputCommandInteraction, PermissionFlagsBits, EmbedBuilder } = require('discord.js');
 const temprole = require('../../models/temprole');
 const vip = require('../../models/vip');
 const { Reply } = require('../../util/replies');
