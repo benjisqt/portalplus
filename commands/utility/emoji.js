@@ -32,7 +32,7 @@ module.exports = {
         sub.setName('add')
         .setDescription('Add an emoji to your server!')
         .addAttachmentOption((opt) =>
-            opt.setName('emoji')
+            opt.setName('emojiattachment')
             .setDescription('The emoji you want to add to the server')
             .setRequired(true)
         )
@@ -60,7 +60,7 @@ module.exports = {
 
     async execute(interaction) {
         let emoji = interaction.options.getString('emoji')?.trim();
-        let emojiattachment = interaction.options.getAttachment('emoji');
+        let emojiattachment = interaction.options.getAttachment('emojiattachment');
         const loadingemoji = client.emojis.cache.get('1096078204680286329');
         const name = interaction.options.getString('name');
         const link = interaction.options.getString('link');
