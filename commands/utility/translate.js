@@ -49,6 +49,7 @@ module.exports = {
         });
 
         return interaction.editReply({
+            content: ``,
             embeds: [
                 new EmbedBuilder()
                 .setTitle(`${translateemoji} Translation Successful`)
