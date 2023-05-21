@@ -90,6 +90,9 @@ module.exports = {
 
                 setTimeout(() => {
                     user.roles.remove(role.id);
+
+                    temprole.deleteOne({ Guild: interaction.guildId, User: user.id, Role: role.id }, { new: true });
+
                     interaction.channel.send({
                         content: `${user.user.tag} has had their role removed.`,
                         embeds: [
