@@ -86,7 +86,26 @@ module.exports = {
                 });
 
                 user.roles.add(role.id);
-                return Reply(interaction, 'Green', '✅', `I successfully added the ${role} role to ${user}.\nTheir role will expire in ${duration}.`, false);
+                Reply(interaction, 'Green', '✅', `I successfully added the ${role} role to ${user}.\nTheir role will expire in ${duration}.`, false);
+
+                setTimeout(() => {
+                    user.roles.remove(role.id);
+                    interaction.channel.send({
+                        content: `${user.user.tag} has had their role removed.`,
+                        embeds: [
+                            new EmbedBuilder()
+                            .setTitle(`Temporary Role Removed`)
+                            .setDescription(`> The temporary role assigned to ${user.user.tag} has been removed because the expiry has been reached.`)
+                            .addFields(
+                                { name: 'Moderator', value: `<@${interaction.member.id}>`, inline: true },
+                                { name: 'Duration', value: `${duration}`, inline: true },
+                                { name: 'Role', value: `<@${role.id}>`, inline: true }
+                            )
+                            .setColor('Gold')
+                            .setFooter({ text: `Portal+ Temporary Role System (PTRS)`, iconURL: client.user.displayAvatarURL({ size: 1024 }) })
+                        ]
+                    })
+                }, msduration)
             }
             break;
 
