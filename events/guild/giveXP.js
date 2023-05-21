@@ -3,6 +3,7 @@ const xp = require('../../models/xp');
 const { getRandomXP } = require('../../util/getRandomXP');
 const calculateLevelXP = require('../../util/calculateLevelXP');
 const preventSpam = new Set();
+const XPRewards = require('../../models/XPRewards');
 
 module.exports = {
     name: 'messageCreate',
@@ -25,9 +26,22 @@ module.exports = {
 
         const data = await xp.findOne(query);
         if(data) {
-            data.XP += XPToGive;
+            const newxp = XPToGive * data.XPMultiplier;
 
             const oldxp = data.XP / 10
+
+            data.XP += newxp;
+
+            const rewardsdata = await XPRewards.findOne({ Guild: message.guild.id, User: message.author.id });
+
+            if(!rewardsdata) {
+                await XPRewards.create({
+                    Guild: message.guild.id,
+                    User: message.author.id,
+                    ClaimedRewards: [],
+                    Rewards: []
+                });
+            }
 
             if(data.XP > calculateLevelXP(data.Level)) {
                 data.Level += 1;
@@ -72,6 +86,22 @@ module.exports = {
                 }, 1000);
 
                 await data.save();
+                
+                if(data.Level >= 50 && !rewardsdata.Rewards.includes('Free Portal+ VIP - 3 Months')) {
+                    if(rewardsdata.ClaimedRewards.includes('Free Portal+ VIP - 3 Months')) return;
+                    message.channel.send({
+                        embeds: [
+                            new EmbedBuilder()
+                            .setTitle(`You have unlocked a reward! 🔓`)
+                            .setDescription(`Since you have reached level 50, you have obtained a free Portal+ VIP license for 3 months!\nTo claim this reward, simply type /xprewards claim, and then the ID!\nNOTE: The ID can be obtained by running /xprewards listunclaimed to view all rewards you haven't claimed!`)
+                            .setColor('Gold')
+                            .setFooter({ text: `Portal+ Levelling System Rewards!` })
+                        ]
+                    });
+
+                    rewardsdata.Rewards.push('Free Portal+ VIP - 3 Months');
+                    rewardsdata.save();
+                }
             } else {
                 await data.save();
             }

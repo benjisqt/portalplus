@@ -32,9 +32,12 @@ module.exports = {
                             name: '30 days',
                             value: 'monthly'
                         }, {
+                            name: '3 months',
+                            value: '3month'
+                        }, {
                             name: '365 days',
-                            value: 'yearly'
-                        },)
+                            value: 'yearly',
+                        })
                         .setRequired(true)
                 )
         )
@@ -171,6 +174,7 @@ module.exports = {
                 if (validCode.Length === 'daily') expiration = 1;
                 if (validCode.Length === 'weekly') expiration = 7;
                 if (validCode.Length === 'monthly') expiration = 30;
+                if (validCode.Length === '3month') expiration = 90;
                 if (validCode.Length === 'yearly') expiration = 365;
 
                 dt.setDate(dt.getDate() + expiration);
