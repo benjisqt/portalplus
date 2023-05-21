@@ -193,6 +193,7 @@ module.exports = {
                 if (validCode.Length == 'daily') redeemed = 1;
                 if (validCode.Length == 'weekly') redeemed = 7;
                 if (validCode.Length == 'monthly') redeemed = 30;
+                if (validCode.Length == '3month') redeemed = 90;
                 if (validCode.Length == 'yearly') redeemed = 365;
 
                 if (silent === true) {

@@ -68,7 +68,7 @@ module.exports = {
 
                 const rolecheck = await temprole.findOne({ Guild: interaction.guildId, Role: role.id, User: user.id });
                 if(rolecheck) return Reply(interaction, 'Red', '🛑', `That user has already been assigned that temporary role!`, true);
-                if(user.roles.includes(role.id)) return Reply(interaction, 'Red', '🛑', `That user has already been assigned that role manually.`, true);
+                if(user.roles.cache.has(role.id)) return Reply(interaction, 'Red', '🛑', `That user has already been assigned that role manually.`, true);
 
                 const date = new Date();
 
