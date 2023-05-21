@@ -76,9 +76,11 @@ module.exports = {
                             .setDescription(`> A reward has been claimed. Thanks for your loyalty to Portal+!\nNOTE: To claim the reward, you must have Administrator permissions. Run /vip redeem, followed by the code, to redeem your Portal+ VIP!`)
                             .addFields(
                                 { name: 'Reward', value: `${id}` },
-                                { name: 'Duration', value: `3 Months` }
+                                { name: 'Duration', value: `3 Months` },
+                                { name: 'Code To Redeem', value: `${newcode}` }
                             )
-                        ]
+                            .setColor('Gold')
+                        ], ephemeral: true
                     });
                 }
             }
