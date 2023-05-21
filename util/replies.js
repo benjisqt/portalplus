@@ -9,8 +9,9 @@ async function Reply(interaction, color, emoji, description, ephemeral) {
         ], ephemeral: ephemeral
     })
 }
-async function EditReply(interaction, color, emoji, description, ephemeral) {
+async function EditReply(interaction, content, color, emoji, description, ephemeral) {
     return interaction.editReply({
+        content: `${content}`,
         embeds: [
             new EmbedBuilder()
             .setColor(color)
@@ -19,4 +20,4 @@ async function EditReply(interaction, color, emoji, description, ephemeral) {
     })
 }
 
-module.exports = { Reply };
+module.exports = { Reply, EditReply };

@@ -26,6 +26,28 @@ process.on('unhandledRejection', (reason, promise) => {
     ]});
 });
 
+process.on('uncaughtException', (reason, promise) => {
+    console.log('Unhandled Rejection At:', promise, 'reason:', reason);
+    const ch = client.channels.cache.get('1100148844920057967');
+    ch.send({ embeds: [
+        new EmbedBuilder()
+        .setTitle(`Portal+ has experienced an error!`)
+        .setColor('Red')
+        .setDescription(`The following is the uncaught exception report:\n\nReason: ${reason}`)
+    ]});
+});
+
+process.on('uncaughtExceptionMonitor', (reason, promise) => {
+    console.log('Unhandled Rejection At:', promise, 'reason:', reason);
+    const ch = client.channels.cache.get('1100148844920057967');
+    ch.send({ embeds: [
+        new EmbedBuilder()
+        .setTitle(`Portal+ has experienced an error!`)
+        .setColor('Red')
+        .setDescription(`The following is the uncaught exception monitor report:\n\nReason: ${reason}`)
+    ]});
+});
+
 // MUSIC SECTION
 const { DisTube } = require('distube');
 const { SpotifyPlugin } = require('@distube/spotify');

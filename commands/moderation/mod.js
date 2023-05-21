@@ -190,6 +190,8 @@ module.exports = {
 
         const subgroup = options.getSubcommandGroup();
 
+        const emoji = client.emojis.cache.get('1099831412451979284');
+
         switch (subgroup) {
             case 'member': {
                 const sub = options.getSubcommand();
