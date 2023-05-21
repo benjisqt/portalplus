@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, ChatInputCommandInteraction, PermissionFlagsBits, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, ChatInputCommandInteraction, PermissionFlagsBits, EmbedBuilder, Client } = require('discord.js');
 const temprole = require('../../models/temprole');
 const vip = require('../../models/vip');
 const { Reply } = require('../../util/replies');
@@ -45,9 +45,10 @@ module.exports = {
     /**
      * 
      * @param {ChatInputCommandInteraction} interaction
+     * @param {Client} client
      */
     
-    async execute(interaction) {
+    async execute(interaction, client) {
         const user = interaction.options.getMember('user') || null;
         const role = interaction.options.getRole('role') || null;
         const duration = interaction.options.getString('duration') || null;
