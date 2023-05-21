@@ -114,16 +114,13 @@ module.exports = {
             break;
 
             case 'remove': {
-                const vipdata = await vip.findOne({ Guild: interaction.guildId });
                 const data = await temprole.findOne({ Guild: interaction.guildId, User: user.id, Role: role.id });
                 if(!data) return Reply(interaction, 'Red', '🛑', `That role has been manually assigned, it cannot be removed with this command.`);
 
                 if(role.position >= interaction.guild.members.me.roles.highest.position) return Reply(interaction, 'Red', '🛑', `That role is equal to or higher than my highest role. Please position me above this role so I can remove it from people.`, true);
                 if(role.position >= interaction.member.roles.highest.position) return Reply(interaction, 'Red', '🛑', `You cannot take away roles that are higher than or equal to your role position.`);
 
-                await data.deleteOne({ Guild: interaction.guildId, User: user.id, Role: role.id }, { new: true });
-
-                data.save();
+                await temprole.deleteOne({ Guild: interaction.guildId, User: user.id, Role: role.id }, { new: true });
 
                 user.roles.remove(role.id);
                 return Reply(interaction, 'Green', '✅', `I successfully removed the ${role} role from ${user}.`, false);

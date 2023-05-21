@@ -1,10 +1,11 @@
-const { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder, PermissionFlagsBits } = require('discord.js');
 const antispam = require('../../models/antispam');
 
 module.exports = {
     category: 'Config',
     data: new SlashCommandBuilder()
     .setName('antispam')
+    .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
     .setDescription('Portal+ Antispam System!')
     .addSubcommand((sub) =>
         sub.setName('on')
