@@ -90,7 +90,7 @@ module.exports = {
                 let rewardsarray = [];
 
                 data.Rewards.forEach(reward => {
-                    rewardsarray.push(`ID: ${rewardsarray}`)
+                    rewardsarray.push(`ID: ${reward}`)
                 });
 
                 return interaction.reply({
@@ -110,7 +110,7 @@ module.exports = {
                 let rewardsarray = [];
 
                 data.ClaimedRewards.forEach(reward => {
-                    rewardsarray.push(`ID: ${rewardsarray}`)
+                    rewardsarray.push(`ID: ${reward}`)
                 });
 
                 return interaction.reply({
