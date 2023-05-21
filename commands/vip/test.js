@@ -1,10 +1,11 @@
-const { SlashCommandBuilder, ChatInputCommandInteraction } = require('discord.js');
+const { SlashCommandBuilder, ChatInputCommandInteraction, PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
     vip: true,
     category: 'VIP',
     data: new SlashCommandBuilder()
     .setName('test')
+    .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
     .setDescription('VIP testing'),
 
     /**
