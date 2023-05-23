@@ -5,6 +5,7 @@ const { Reply } = require('../../util/replies');
 const ms = require('ms');
 
 module.exports = {
+    category: 'Utility',
     data: new SlashCommandBuilder()
     .setName('temprole')
     .setDescription('Assign/remove temporary roles to/from someone!')

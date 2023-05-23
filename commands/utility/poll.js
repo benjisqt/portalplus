@@ -2,6 +2,7 @@ const { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder, Client, 
 const poll = require('../../models/poll');
 
 module.exports = {
+    category: 'Utility',
     data: new SlashCommandBuilder()
     .setName('poll')
     .setDescription('Start a poll!')

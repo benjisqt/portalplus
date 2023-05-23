@@ -2,6 +2,7 @@ const { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder, Client }
 const translate = require('@iamtraction/google-translate');
 
 module.exports = {
+    category: 'Utility',
     data: new SlashCommandBuilder()
     .setName('translate')
     .setDescription('Translate words and phrases!!')

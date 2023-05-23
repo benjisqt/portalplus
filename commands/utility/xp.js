@@ -3,6 +3,7 @@ const xp = require('../../models/xp');
 const { Reply } = require('../../util/replies');
 
 module.exports = {
+    category: 'Utility',
     data: new SlashCommandBuilder()
     .setName('xp')
     .setDescription('XP Management Commands')

@@ -5,6 +5,7 @@ const canvacord = require('canvacord');
 const calculateLevelXP = require('../../util/calculateLevelXP');
 
 module.exports = {
+    category: 'Utility',
     data: new SlashCommandBuilder()
     .setName('level')
     .setDescription('Shows a users level')

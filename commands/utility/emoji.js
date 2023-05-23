@@ -3,6 +3,7 @@ const { default: axios } = require('axios');
 const { Reply, EditReply } = require('../../util/replies');
 
 module.exports = {
+    category: 'Utility',
     data: new SlashCommandBuilder()
     .setName('emoji')
     .setDescription('Emoji management commands')

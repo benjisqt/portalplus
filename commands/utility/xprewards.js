@@ -6,6 +6,7 @@ const vipcodes = require('../../models/vipcodes');
 const { Reply } = require('../../util/replies');
 
 module.exports = {
+    category: 'Utility',
     data: new SlashCommandBuilder()
     .setName('xprewards')
     .setDescription('XP Rewards!')

@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, ChatInputCommandInteraction, ChannelType, EmbedBuilder, PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
+    category: 'Utility',
     data: new SlashCommandBuilder()
     .setName('clonecategory')
     .setDescription('Clone a category!')

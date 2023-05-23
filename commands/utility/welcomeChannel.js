@@ -2,6 +2,7 @@ const { SlashCommandBuilder, ChatInputCommandInteraction, PermissionFlagsBits, C
 const welcomeChannel = require('../../models/welcomeChannel');
 
 module.exports = {
+    category: 'Utility',
     data: new SlashCommandBuilder()
     .setName('welcomechannel')
     .setDescription('Setup a welcome channel and message!')
