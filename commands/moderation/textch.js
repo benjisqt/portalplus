@@ -60,6 +60,15 @@ module.exports = {
                         .setDescription('The channel you want to set the slowmode in')
                         .addChannelTypes(ChannelType.GuildText)
                 )
+        )
+        .addSubcommand((sub) =>
+            sub.setName('purge')
+            .setDescription('Removes a specified amount of messages from a text channel')
+            .addIntegerOption((opt) =>
+                opt.setName('amount')
+                .setDescription('The amount of messages')
+                .setRequired(true)
+            )
         ),
 
     /**
@@ -171,6 +180,27 @@ module.exports = {
                 }
             }
                 break;
+            
+            case 'purge': {
+                const amount = options.getInteger('amount');
+
+                if (amount > 100) return replies.Reply(interaction, 'Red', `🚫`, `You cannot delete more than 100 messages at 1 time!`, true);
+
+                await interaction.channel.bulkDelete(amount);
+                const msg = await interaction.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                        .setTitle(`✅ Successfully Cleared Messages`)
+                        .setDescription(`Removed ${amount} messages from <#${interaction.channel.id}>`)
+                        .setColor('Gold')
+                    ]
+                });
+
+                setTimeout(() => {
+                    msg.delete();
+                }, 3000);
+            }
+            break;
         }
     }
 }
