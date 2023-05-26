@@ -31,7 +31,9 @@ module.exports = {
                         }
                     )
                     .setThumbnail(guilds.iconURL({ dynamic: true }))
-                ] });
+                ] }).catch(err => {
+                    return;
+                })
                 date.deleteOne({ Guild: date.Guild });
             }
         })

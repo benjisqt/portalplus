@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, ChatInputCommandInteraction, Client, EmbedBuilder, PermissionFlagsBits, ButtonBuilder, ButtonStyle, ActionRowBuilder, ComponentType } = require('discord.js');
 const punishments = require('../../models/punishments');
 const { Reply } = require('../../util/replies');
+const ms = require('ms');
 const temprole = require('../../models/temprole');
 
 module.exports = {
