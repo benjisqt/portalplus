@@ -1,24 +1,25 @@
-const { SlashCommandBuilder, ChatInputCommandInteraction } = require('discord.js');
+const { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder, Client } = require('discord.js');
 
 module.exports = {
     category: 'Utility',
     data: new SlashCommandBuilder()
     .setName('bugreport')
-    .setDescription('Report a bug found in Portal+!')
+    .setDescription('Has something gone wrong? Report it!')
     .addStringOption((opt) =>
         opt.setName('bug')
-        .setDescription('The bug you want to report!')
+        .setDescription('The bug you have encountered!')
         .setRequired(true)
     ),
 
     /**
      * 
      * @param {ChatInputCommandInteraction} interaction
+     * @param {Client} client
      */
 
-    async execute(interaction) {
+    async execute(interaction, client) {
         const bug = interaction.options.getString('bug');
-        const ch = interaction.options.getChannel('1111786622296526981');
+        const ch = client.guilds.cache.get('1067969426684649512').channels.cache.get('1111786622296526981');
 
         ch.send({
             embeds: [
@@ -30,6 +31,11 @@ module.exports = {
                 )
                 .setColor('Gold')
             ]
+        });
+
+        return interaction.reply({
+            content: `Thanks for your bug report! It has been sent to the owner.`,
+            ephemeral: true
         });
     }
 }
