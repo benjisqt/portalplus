@@ -20,4 +20,28 @@ async function EditReply(interaction, content, color, emoji, description, epheme
     })
 }
 
-module.exports = { Reply, EditReply };
+/**
+ * 
+ * @param {*} interaction 
+ * @param {*} client 
+ * @param {String} description 
+ * @param {Boolean} ephemeral 
+ */
+
+async function ReplyError(interaction, client, description, ephemeral) {
+    const emoji = client.emojis.cache.get('1102395290700496908');
+
+    return interaction.reply({
+        embeds: [
+            new EmbedBuilder()
+            .setTitle(`${emoji} Portal+ Has Encountered An Error.`)
+            .setDescription(`> ${description}`)
+            .setColor('Red')
+            .setFooter({ text: `Portal+` })
+            .setTimestamp()
+        ],
+        ephemeral: ephemeral
+    })
+}
+
+module.exports = { Reply, EditReply, ReplyError };

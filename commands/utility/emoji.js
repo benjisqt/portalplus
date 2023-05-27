@@ -59,7 +59,7 @@ module.exports = {
      * @param {Client} client
      */
 
-    async execute(interaction) {
+    async execute(interaction, client) {
         let emoji = interaction.options.getString('emoji')?.trim();
         let emojiattachment = interaction.options.getAttachment('emojiattachment');
         const loadingemoji = client.emojis.cache.get('1096078204680286329');
