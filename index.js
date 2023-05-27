@@ -10,6 +10,8 @@ const client = new Client({
     partials: [Object.keys(Partials)],
 });
 
+module.exports = client;
+
 client.config = require('./config.json');
 client.commands = new Collection();
 const handlers = require('./util/handlers');
