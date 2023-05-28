@@ -42,6 +42,7 @@
     "chalk": "^4.0.0",
     "discord-backup": "^3.3.2",
     "discord-gamecord": "^4.4.0",
+    "discord-giveaways": "^6.0.1",
     "discord-player": "^6.3.0",
     "discord-youtube": "^1.1.1",
     "discord.js": "^14.9.0",

@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, ChatInputCommandInteraction } = require('discord.js');
-const player = require('../../index');
+const player = require('../../DisTube');
 
 module.exports = {
     category: 'Music',
