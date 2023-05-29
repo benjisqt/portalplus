@@ -50,12 +50,11 @@ module.exports = {
             case 'setup': {
                 if(data) return ReplyError(interaction, client, `The invite logger has already been setup.`, true);
 
-                if(channel.type !== ChannelType.GuildText || channel.type !== ChannelType.GuildAnnouncement) return ReplyError(
-                    interaction,
-                    client,
-                    `That channel is not of type GuildText or GuildAnnouncement.`,
-                    true
-                );
+                if(channel.type !== ChannelType.GuildText) {
+                    if(channel.type !== ChannelType.GuildAnnouncement) {
+                        return ReplyError(interaction, client, `That channel is not of type GuildText or GuildAnnouncement.`, true);
+                    } 
+                }
                 
                 await invite.create({
                     Guild: interaction.guild.id,
@@ -80,12 +79,11 @@ module.exports = {
             case 'modify': {
                 if(!data) return ReplyError(interaction, client, `The invite logger is disabled.`, true);
 
-                if(channel.type !== ChannelType.GuildText || channel.type !== ChannelType.GuildAnnouncement) return ReplyError(
-                    interaction,
-                    client,
-                    `That channel is not of type GuildText or GuildAnnouncement.`,
-                    true
-                );
+                if(channel.type !== ChannelType.GuildText) {
+                    if(channel.type !== ChannelType.GuildAnnouncement) {
+                        return ReplyError(interaction, client, `That channel is not of type GuildText or GuildAnnouncement.`, true);
+                    } 
+                }
                 
                 invite.findOneAndUpdate({ Guild: interaction.guildId }, { Channel: channel.id }, { new: true });
                 data.save();
