@@ -34,8 +34,8 @@ module.exports = {
             const ranStatus = Math.floor(Math.random() * 5) + 1;
 
             if(ranStatus === 1) acname = `over ${client.users.cache.size} users`;
-            if(ranStatus === 2) acname = `my developer cry`;
-            if(ranStatus === 3) acname = `you through your webcam`;
+            if(ranStatus === 2) acname = `me be the best Discord bot`;
+            if(ranStatus === 3) acname = `my ${client.commands.size} commands`;
             if(ranStatus === 4) acname = `version 1.${commitcount}`;
             if(ranStatus === 5) acname = `over my support server`;
 

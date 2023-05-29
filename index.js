@@ -12,6 +12,9 @@ const client = new Client({
 
 module.exports = client;
 
+client.snipes = new Map();
+client.invites = new Collection();
+
 client.config = require('./config.json');
 client.commands = new Collection();
 const handlers = require('./util/handlers');
