@@ -3,6 +3,7 @@ const invite = require('../../models/invite');
 const { Reply, ReplyError } = require('../../util/replies');
 
 module.exports = {
+    category: 'Utility',
     data: new SlashCommandBuilder()
     .setName('invite-logger')
     .setDescription('Modify the invite logger system!')
@@ -38,6 +39,8 @@ module.exports = {
 
     async execute(interaction, client) {
         const { options, guild } = interaction;
+
+        const sub = options.getSubcommand();
 
         const channel = options.getChannel('channel') || null;
 
