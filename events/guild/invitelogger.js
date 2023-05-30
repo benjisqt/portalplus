@@ -1,5 +1,5 @@
 const { GuildMember, Client } = require('discord.js');
-const invite = require('../../models/invite');
+const invites = require('../../models/invite');
 
 module.exports = {
     name: 'guildMemberAdd',
@@ -11,7 +11,7 @@ module.exports = {
      */
 
     async execute(member, client) {
-        const data = await invite.findOne({ Guild: member.guild.id });
+        const data = await invites.findOne({ Guild: member.guild.id });
         if(!data) return;
 
         const channelId = data.Channel;
