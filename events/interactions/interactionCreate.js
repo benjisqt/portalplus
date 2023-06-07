@@ -73,9 +73,47 @@ module.exports = {
                 cooldown.delete(interaction.user.id);
             }, 30000)
 
-            return command.execute(interaction, client);
+            try {
+                await command.execute(interaction, client);
+            } catch(err) {
+                return interaction.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                        .setTitle(`❌ Error`)
+                        .setDescription(`> ${err}`)
+                        .setColor('Red')
+                        .setTimestamp()
+                    ], ephemeral: true
+                })
+            }
         }
+
+        const coldown = command.cooldown || 0;
+        const cmdcooldown = coldown * 1000;
+
+        var t = new Date();
+        t.setSeconds(t.getSeconds() + coldown);
+
+        if(cooldown.has(interaction.user.id)) return replies.ReplyError(interaction, client, `This command is on cooldown for ${coldown} seconds.`, true);
+
+        cooldown.add(interaction.user.id);
+
+        setTimeout(() => {
+            cooldown.delete(interaction.user.id);
+        }, cmdcooldown);
         
-        command.execute(interaction, client);
+        try {
+            await command.execute(interaction, client);
+        } catch(err) {
+            return interaction.reply({
+                embeds: [
+                    new EmbedBuilder()
+                    .setTitle(`❌ Error`)
+                    .setDescription(`> ${err}`)
+                    .setColor('Red')
+                    .setTimestamp()
+                ], ephemeral: true
+            })
+        }
     }
 }

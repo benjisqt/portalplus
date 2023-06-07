@@ -11,6 +11,7 @@ const os = require('os');
 const commit = require('git-commit-count');
 
 module.exports = {
+    cooldown: 5,
     category: 'Information',
     data: new SlashCommandBuilder()
         .setName('about')
