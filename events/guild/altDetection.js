@@ -22,7 +22,9 @@ module.exports = {
         const difference = Date.now() - createdAt;
 
         if(difference < timeSpan) {
-            member.guild.channels.cache.find(c => c.permissionsFor(client.user).has('SendMessages') && c.type === ChannelType.GuildText[0]).send({
+            const ch = member.guild.channels.cache.find(c => c.permissionsFor(client.user).has('SendMessages') && c.type === ChannelType.GuildText[0]);
+            if(!ch) return;
+            ch.send({
                 content: `\`✅\` Alt account successfully banned!\n**User:** ${member.user.tag}\n**Created At:** <t:${member.user.createdAt / 1000}:R>`
             });
 
