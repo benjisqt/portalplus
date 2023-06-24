@@ -50,28 +50,6 @@ module.exports = {
                 ChannelName: newState.channel.name,
                 Duration: '0',
             });
-
-            newState.channel.setName(`0: ${newState.channel.name}`);
-        } else {
-            const membersinVC = newState.channel.members;
-            if(membersinVC.size <= 0) {
-                await vctimerinfo.findOneAndDelete({ Guild: newState.guild.id, Channel: newState.channelId }, { new: true });
-                return;
-            }
-
-            const numberduration = Number(newtimerinfo.Duration);
-            if(numberduration < 0) {
-                return console.log('New Timer Info Duration Invalid.')
-            };
-
-            const newduration = numberduration + 1;
-
-            const stringduration = newduration.toString();
-
-            newtimerinfo.Duration = stringduration;
-            newtimerinfo.save();
-
-            newState.channel.setName(`${stringduration}: ${newState.channel.name}`)
         }
 
         setInterval(async() => {
@@ -93,7 +71,7 @@ module.exports = {
                 return console.log('New Timer Info Duration Invalid.')
             };
 
-            const newduration = numberduration + 3;
+            const newduration = numberduration + 5;
 
             const stringduration = newduration.toString();
 
@@ -102,6 +80,6 @@ module.exports = {
 
             newState.channel.setName(`${intervaltimerinfo.Duration}: ${newState.channel.name}`)
             console.log('Updated name');
-        }, 3000);
+        }, 5000);
     }
 }

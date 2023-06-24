@@ -12,6 +12,7 @@ module.exports = {
      */
 
     async execute(message, client) {
+        console.log(`${message.author}: ${message.content}`)
         if(message.author.bot) return;
 
         const data = await vip.findOne({ Guild: message.guild.id });
