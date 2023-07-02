@@ -11,6 +11,7 @@ module.exports = {
      */
 
     async execute(oldState, newState) {
+        /**
         console.log('voiceStateUpdate event ran');
         
         const data = await vctimer.findOne({ Guild: newState.guild.id });
@@ -81,5 +82,6 @@ module.exports = {
             newState.channel.setName(`${intervaltimerinfo.Duration}: ${newState.channel.name}`)
             console.log('Updated name');
         }, 5000);
+        */
     }
 }
