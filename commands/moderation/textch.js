@@ -182,7 +182,7 @@ module.exports = {
                 break;
             
             case 'purge': {
-                const amount = options.getInteger('amount');
+                const amount = interaction.options.getInteger('amount');
 
                 if (amount > 100) return replies.Reply(interaction, 'Red', `🚫`, `You cannot delete more than 100 messages at 1 time!`, true);
 
