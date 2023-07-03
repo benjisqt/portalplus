@@ -2,7 +2,8 @@ const {
     SlashCommandBuilder,
     ChatInputCommandInteraction,
     ChannelType,
-    PermissionFlagsBits
+    PermissionFlagsBits,
+    EmbedBuilder
 } = require('discord.js');
 const { Reply } = require('../../util/replies');
 const ms = require('ms');
